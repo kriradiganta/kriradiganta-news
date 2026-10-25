@@ -4,331 +4,750 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ক্রীড়াদিগন্ত | Admin Panel</title>
+<meta name="theme-color" content="#071d33">
+<title>KRIRADIGANTA | সংবাদ ব্যবস্থাপনা</title>
 <style>
+:root{--navy:#071d33;--blue:#123e65;--gold:#f4b942;--bg:#f2f5f9;--white:#fff;--text:#172333;--muted:#65758b;--red:#b42318;--green:#087443}
 *{box-sizing:border-box}
-body{font-family:Arial,sans-serif;max-width:850px;margin:20px auto;padding:16px;background:#f1f5f9;color:#172033}
-header{background:#073d2b;color:white;padding:20px;border-radius:12px}
-.card{background:white;padding:18px;margin:16px 0;border-radius:12px;box-shadow:0 2px 10px #0000000b}
-input,textarea,select,button{font:inherit;width:100%;padding:12px;margin:7px 0;border:1px solid #ccd3dc;border-radius:7px}
-textarea{resize:vertical}
-button{background:#087443;color:white;border:0;font-weight:bold;cursor:pointer}
-button:disabled{opacity:.6}
-button.secondary{background:#34516b}
-button.danger{background:#b42332}
-button.light{background:#e8eef3;color:#172333}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.actions button{flex:1;min-width:110px}
-.item{border:1px solid #dbe2e8;border-radius:9px;padding:14px;margin:12px 0}
-.item h3{margin:5px 0 8px;overflow-wrap:anywhere}
-.meta,.note{font-size:13px;color:#526173;line-height:1.6}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans Bengali",sans-serif;line-height:1.55}
+header{background:var(--navy);color:#fff;padding:18px 16px;border-bottom:4px solid var(--gold)}
+.header-inner{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:23px;font-weight:800;letter-spacing:.5px}
+.subbrand{font-size:13px;color:#d7e2ef}
+main{max-width:1100px;margin:24px auto;padding:0 14px 40px}
+.panel{background:#fff;border:1px solid #e1e7ef;border-radius:14px;padding:20px;margin-bottom:20px;box-shadow:0 4px 18px #071d3309}
+h1,h2,h3{margin-top:0}
+h1{font-size:23px}h2{font-size:20px}
+label{display:block;font-size:14px;font-weight:700;margin:14px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #ccd5e1;border-radius:8px;background:#fff;font:inherit;color:var(--text)}
+textarea{min-height:130px;resize:vertical}
+button{border:0;border-radius:8px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;background:var(--blue);color:#fff}
+button:disabled{opacity:.55;cursor:not-allowed}
+button.secondary{background:#e8eef5;color:#19324b}
+button.gold{background:var(--gold);color:#172333}
+button.red{background:#fff0ef;color:var(--red);border:1px solid #f2c2bd}
+button.green{background:#e6f6ed;color:var(--green);border:1px solid #b7e2c8}
+button.small{padding:7px 10px;font-size:13px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.muted{color:var(--muted);font-size:13px}
+.status{display:none;margin:12px 0;padding:11px 13px;border-radius:8px;background:#eaf2ff;color:#173d6b;overflow-wrap:anywhere}
+.status.error{display:block;background:#fff0ef;color:#9f2018}
+.status.success{display:block;background:#e7f7ee;color:#08683b}
+.news-item{border:1px solid #dfe6ee;border-radius:12px;padding:15px;margin-top:12px;background:#fff}
+.news-item.featured{border:2px solid var(--gold);background:#fffdf6}
+.news-title{font-weight:800;font-size:17px;overflow-wrap:anywhere}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#edf1f6;color:#35475c;font-size:12px}
+.badge.published{background:#e6f6ed;color:#087443}
+.badge.featured-badge{background:#fff0c2;color:#745100}
+.preview{max-width:180px;max-height:110px;object-fit:cover;border-radius:8px;margin-top:8px}
+.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .hidden{display:none!important}
-label{display:block;margin-top:10px;font-weight:600}
-.checkrow{display:flex;gap:10px;align-items:center}
-.checkrow input{width:auto}
-#message{white-space:pre-wrap;line-height:1.6}
-.preview{max-width:100%;max-height:260px;display:block;margin:8px 0;border-radius:8px}
+hr{border:0;border-top:1px solid #e5eaf0;margin:20px 0}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.panel{padding:15px}.header-inner{align-items:flex-start;flex-direction:column}.brand{font-size:21px}main{margin-top:15px}}
 </style>
 </head>
 <body>
 <header>
-<h1>ক্রীড়াদিগন্ত</h1>
-<p>KRIRADIGANTA • সংবাদ ব্যবস্থাপনা প্যানেল</p>
+  <div class="header-inner">
+    <div>
+      <div class="brand">ক্রীড়াদিগন্ত | KRIRADIGANTA</div>
+      <div class="subbrand">তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন • সংবাদ ব্যবস্থাপনা প্যানেল</div>
+    </div>
+    <div class="top-actions">
+      <span id="userEmail" class="subbrand"></span>
+      <button id="logoutBtn" class="secondary hidden" type="button">লগআউট</button>
+    </div>
+  </div>
 </header>
 
-<section class="card" id="loginBox">
-<h2>অ্যাডমিন লগইন</h2>
-<form id="loginForm">
-<input id="email" type="email" placeholder="অ্যাডমিন ইমেইল" autocomplete="username" required>
-<input id="password" type="password" placeholder="পাসওয়ার্ড" autocomplete="current-password" required>
-<button type="submit" id="loginBtn">লগইন</button>
-</form>
-</section>
+<main>
+  <section id="loginPanel" class="panel">
+    <h1>অ্যাডমিন লগইন</h1>
+    <p class="muted">শুধু অনুমোদিত অ্যাডমিন অ্যাকাউন্ট ব্যবহার করুন।</p>
+    <form id="loginForm">
+      <label for="loginEmail">ইমেইল</label>
+      <input id="loginEmail" type="email" autocomplete="username" required>
+      <label for="loginPassword">পাসওয়ার্ড</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" required>
+      <div class="actions">
+        <button id="loginBtn" type="submit">লগইন করুন</button>
+      </div>
+    </form>
+    <div id="loginStatus" class="status" role="status"></div>
+  </section>
 
-<div id="adminBox" class="hidden">
-<section class="card">
-<div class="actions">
-<h2 style="flex:2;margin:8px 0">সংবাদ ব্যবস্থাপনা</h2>
-<button type="button" class="secondary" id="logoutBtn">লগআউট</button>
-</div>
+  <section id="appPanel" class="hidden">
+    <div class="panel">
+      <div class="top-actions" style="justify-content:space-between">
+        <h1 style="margin:0">সংবাদ ব্যবস্থাপনা</h1>
+        <button id="newBtn" type="button" class="secondary">+ নতুন সংবাদ</button>
+      </div>
+      <div id="appStatus" class="status" role="status"></div>
+    </div>
 
-<h3 id="formHeading">নতুন সংবাদ লিখুন</h3>
-<form id="newsForm">
-<input type="hidden" id="newsId">
+    <section class="panel" id="editorPanel">
+      <h2 id="formHeading">নতুন সংবাদ লিখুন</h2>
+      <form id="newsForm">
+        <input id="newsId" type="hidden">
 
-<label for="title">সংবাদের শিরোনাম *</label>
-<input id="title" maxlength="300" required>
+        <label for="title">সংবাদের শিরোনাম *</label>
+        <input id="title" maxlength="300" required>
 
-<label for="category">বিভাগ *</label>
-<select id="category" required>
-<option value="">বিভাগ নির্বাচন করুন</option>
-<option>ফুটবল</option>
-<option>ক্রিকেট</option>
-<option>নারী ক্রীড়া</option>
-<option>তৃণমূল ক্রীড়া</option>
-<option>অন্যান্য খেলা</option>
-</select>
+        <div class="grid">
+          <div>
+            <label for="category">বিভাগ *</label>
+            <select id="category" required>
+              <option value="">বিভাগ নির্বাচন করুন</option>
+              <option value="ফুটবল">ফুটবল</option>
+              <option value="ক্রিকেট">ক্রিকেট</option>
+              <option value="নারী ক্রীড়া">নারী ক্রীড়া</option>
+              <option value="তৃণমূল ক্রীড়া">তৃণমূল ক্রীড়া</option>
+              <option value="অন্যান্য খেলা">অন্যান্য খেলা</option>
+            </select>
+          </div>
+          <div>
+            <label for="author">সংবাদদাতার নাম</label>
+            <input id="author" maxlength="150" placeholder="যেমন: ক্রীড়াদিগন্ত ডেস্ক">
+          </div>
+        </div>
 
-<label for="summary">সংক্ষিপ্ত বিবরণ</label>
-<textarea id="summary" rows="3"></textarea>
+        <label for="summary">সংক্ষিপ্ত বিবরণ</label>
+        <textarea id="summary" style="min-height:85px" maxlength="1500" placeholder="সংবাদের সংক্ষিপ্ত পরিচিতি লিখুন"></textarea>
 
-<label for="content">সম্পূর্ণ সংবাদ *</label>
-<textarea id="content" rows="9" required></textarea>
+        <label for="content">সম্পূর্ণ সংবাদ *</label>
+        <textarea id="content" required placeholder="সম্পূর্ণ সংবাদ লিখুন"></textarea>
 
-<label for="imageFile">ছবি আপলোড</label>
-<input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
-<p class="note">JPG, PNG, WebP বা GIF; সর্বোচ্চ ৫০ MB।</p>
-<img id="imagePreview" class="preview hidden" alt="ছবির প্রিভিউ">
+        <hr>
+        <h3>ছবি</h3>
+        <label for="imageFile">ছবি আপলোড</label>
+        <input id="imageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+        <div class="muted">JPG, PNG, WebP বা GIF; সর্বোচ্চ ৫০ MB।</div>
+        <label for="imageUrl">ছবির URL</label>
+        <input id="imageUrl" type="url" placeholder="ছবি আপলোড করলে এখানে URL আসবে">
+        <img id="imagePreview" class="preview hidden" alt="ছবির প্রিভিউ">
 
-<label for="image">ছবির URL</label>
-<input id="image" type="url" placeholder="ছবি আপলোড করলে এখানে URL আসবে">
+        <hr>
+        <h3>ভিডিও</h3>
+        <label for="videoFile">ভিডিও আপলোড</label>
+        <input id="videoFile" type="file" accept="video/mp4,video/webm,video/quicktime">
+        <div class="muted">MP4, WebM বা MOV; সর্বোচ্চ ৫০ MB।</div>
+        <label for="videoUrl">ভিডিও URL</label>
+        <input id="videoUrl" type="url" placeholder="ভিডিও আপলোড করলে এখানে URL আসবে">
 
-<label for="videoFile">ভিডিও আপলোড</label>
-<input id="videoFile" type="file" accept="video/mp4,video/webm,video/quicktime">
-<p class="note">MP4, WebM বা MOV; সর্বোচ্চ ৫০ MB।</p>
+        <div style="margin-top:16px">
+          <label style="display:flex;gap:9px;align-items:center">
+            <input id="publishNow" type="checkbox" checked style="width:auto">
+            সরাসরি প্রকাশ করুন
+          </label>
+          <label style="display:flex;gap:9px;align-items:center">
+            <input id="featuredNow" type="checkbox" style="width:auto">
+            এই সংবাদকে প্রধান সংবাদ করুন
+          </label>
+          <p class="muted">প্রধান সংবাদ হিসেবে প্রকাশিত সংবাদই নির্বাচন করা যাবে। নতুন প্রধান সংবাদ নির্বাচন করলে আগের প্রধান সংবাদটি সরিয়ে দেওয়া হবে।</p>
+        </div>
 
-<label for="video">ভিডিও URL</label>
-<input id="video" type="url" placeholder="ভিডিও আপলোড করলে এখানে URL আসবে">
+        <div class="actions">
+          <button id="saveBtn" type="submit">সংবাদ সংরক্ষণ করুন</button>
+          <button id="cancelEditBtn" class="secondary hidden" type="button">সম্পাদনা বাতিল</button>
+        </div>
+      </form>
+    </section>
 
-<label for="author">সংবাদদাতার নাম</label>
-<input id="author">
+    <section class="panel">
+      <div class="top-actions" style="justify-content:space-between">
+        <h2 style="margin:0">সংরক্ষিত সংবাদ</h2>
+        <button id="refreshBtn" class="secondary" type="button">রিফ্রেশ</button>
+      </div>
+      <div id="newsStatus" class="status" role="status"></div>
+      <div id="newsList"></div>
+    </section>
+  </section>
+</main>
 
-<label class="checkrow">
-<input id="published" type="checkbox">
-<span>সরাসরি প্রকাশ করুন</span>
-</label>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+"use strict";
 
-<div class="actions">
-<button type="submit" id="saveBtn">সংবাদ সংরক্ষণ করুন</button>
-<button type="button" id="cancelBtn" class="light hidden">সম্পাদনা বাতিল</button>
-</div>
-<p id="message" role="status"></p>
-</form>
-</section>
+/* KRIRADIGANTA Supabase configuration */
+const SUPABASE_URL = "https://tbktqpbvrqyoqjvdkesm.supabase.co";
+const SUPABASE_KEY = "sb_publishable_NAfSTNt2-L5m0yanG3UeBQ_Uh-9Bojv";
+const BUCKET = "news-media";
+const MAX_FILE_SIZE = 50 * 1024 * 1024;
 
-<section class="card">
-<div class="actions">
-<h2 style="flex:2;margin:8px 0">সংরক্ষিত সংবাদ</h2>
-<button type="button" class="secondary" id="refreshBtn">রিফ্রেশ</button>
-</div>
-<div id="newsList">সংবাদ লোড হচ্ছে...</div>
-</section>
-</div>
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-<script type="module">
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const $ = id => document.getElementById(id);
+let currentUser = null;
+let articles = [];
+let busy = false;
 
-const SUPABASE_URL='https://tbktqpbvrqyoqjvdkesm.supabase.co';
-const SUPABASE_KEY='sb_publishable_NAfSTNt2-L5m0yanG3UeBQ_Uh-9Bojv';
-const BUCKET='news-media';
-const MAX_SIZE=50*1024*1024;
-const db=createClient(SUPABASE_URL,SUPABASE_KEY);
-const $=id=>document.getElementById(id);
-
-function message(t){$('message').textContent=t}
-function makeSlug(t){
- return t.trim().toLowerCase().normalize('NFKD')
- .replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-+|-+$/g,'')
- .slice(0,150)+'-'+Date.now();
+function showStatus(id, message, type = "") {
+  const el = $(id);
+  el.textContent = message || "";
+  el.className = "status" + (type ? " " + type : "");
+  el.style.display = message ? "block" : "none";
 }
-function randomName(file){
- const ext=file.name.includes('.')?file.name.split('.').pop().toLowerCase():'bin';
- return Date.now()+'-'+crypto.randomUUID()+'.'+ext;
-}
 
-async function checkSession(){
- const {data,error}=await db.auth.getSession();
- if(error){console.error(error);return}
- if(data.session){
-  if(data.session.user.app_metadata?.role==='admin')showAdmin();
-  else await db.auth.signOut();
- }
-}
-function showAdmin(){
- $('loginBox').classList.add('hidden');
- $('adminBox').classList.remove('hidden');
- loadNews();
-}
-
-$('loginForm').addEventListener('submit',async e=>{
- e.preventDefault();
- $('loginBtn').disabled=true;
- try{
-  const {data,error}=await db.auth.signInWithPassword({
-   email:$('email').value.trim(),password:$('password').value
+function setBusy(value) {
+  busy = value;
+  ["loginBtn","saveBtn","refreshBtn","newBtn","logoutBtn"].forEach(id => {
+    const el = $(id);
+    if (el) el.disabled = value;
   });
-  if(error)throw error;
-  if(data.user?.app_metadata?.role!=='admin'){
-   await db.auth.signOut();
-   throw new Error('এই অ্যাকাউন্টে অ্যাডমিন অনুমতি নেই।');
-  }
-  showAdmin();
- }catch(err){alert('লগইন হয়নি: '+err.message)}
- finally{$('loginBtn').disabled=false}
-});
-
-async function uploadFile(file,kind){
- if(!file)return null;
- if(file.size>MAX_SIZE)throw new Error('ফাইলটি ৫০ MB-এর বেশি।');
- const allowed=kind==='image'
-  ?['image/jpeg','image/png','image/webp','image/gif']
-  :['video/mp4','video/webm','video/quicktime'];
- if(!allowed.includes(file.type))
-  throw new Error(kind==='image'?'সমর্থিত ছবি নির্বাচন করুন।':'MP4, WebM বা MOV ভিডিও নির্বাচন করুন।');
-
- const path=kind+'/'+randomName(file);
- message((kind==='image'?'ছবি':'ভিডিও')+' আপলোড হচ্ছে...');
- const {error}=await db.storage.from(BUCKET).upload(path,file,{
-  cacheControl:'3600',upsert:false,contentType:file.type
- });
- if(error)throw new Error('আপলোড ব্যর্থ: '+error.message);
- return db.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
 }
 
-$('imageFile').addEventListener('change',()=>{
- const file=$('imageFile').files[0],preview=$('imagePreview');
- if(!file){preview.classList.add('hidden');return}
- if(!file.type.startsWith('image/')){
-  alert('একটি ছবি নির্বাচন করুন।');$('imageFile').value='';return;
- }
- preview.src=URL.createObjectURL(file);
- preview.classList.remove('hidden');
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, ch => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  })[ch]);
+}
+
+function formatDate(value) {
+  if (!value) return "তারিখ নেই";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "তারিখ নেই";
+  return new Intl.DateTimeFormat("bn-BD", {
+    day:"2-digit", month:"short", year:"numeric",
+    timeZone:"Asia/Dhaka"
+  }).format(date);
+}
+
+function isAdmin(user) {
+  return user?.app_metadata?.role === "admin";
+}
+
+function resetForm() {
+  $("newsForm").reset();
+  $("newsId").value = "";
+  $("formHeading").textContent = "নতুন সংবাদ লিখুন";
+  $("saveBtn").textContent = "সংবাদ সংরক্ষণ করুন";
+  $("cancelEditBtn").classList.add("hidden");
+  $("imageUrl").value = "";
+  $("videoUrl").value = "";
+  $("imagePreview").src = "";
+  $("imagePreview").classList.add("hidden");
+  $("publishNow").checked = true;
+  $("featuredNow").checked = false;
+  showStatus("appStatus", "");
+}
+
+function editArticle(article) {
+  $("newsId").value = article.id;
+  $("title").value = article.title || "";
+  $("category").value = article.category || "";
+  $("summary").value = article.summary || "";
+  $("content").value = article.content || "";
+  $("author").value = article.author || "";
+  $("imageUrl").value = article.image_url || "";
+  $("videoUrl").value = article.video_url || "";
+  $("publishNow").checked = !!article.published;
+  $("featuredNow").checked = !!article.featured;
+  $("formHeading").textContent = "সংবাদ সম্পাদনা করুন";
+  $("saveBtn").textContent = "পরিবর্তন সংরক্ষণ করুন";
+  $("cancelEditBtn").classList.remove("hidden");
+
+  if (article.image_url) {
+    $("imagePreview").src = article.image_url;
+    $("imagePreview").classList.remove("hidden");
+  } else {
+    $("imagePreview").classList.add("hidden");
+  }
+  $("editorPanel").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function safeFileName(name) {
+  const cleaned = name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]/g, "_");
+  return cleaned.slice(-100) || "media-file";
+}
+
+async function uploadMedia(file, kind) {
+  if (!file) return null;
+  if (file.size > MAX_FILE_SIZE) {
+    throw new Error("ফাইলের আকার ৫০ MB-এর বেশি হতে পারবে না।");
+  }
+
+  const imageTypes = ["image/jpeg","image/png","image/webp","image/gif"];
+  const videoTypes = ["video/mp4","video/webm","video/quicktime"];
+  const allowed = kind === "image" ? imageTypes : videoTypes;
+
+  if (!allowed.includes(file.type)) {
+    throw new Error(kind === "image"
+      ? "শুধু JPG, PNG, WebP বা GIF ছবি আপলোড করুন।"
+      : "শুধু MP4, WebM বা MOV ভিডিও আপলোড করুন।");
+  }
+
+  const path = kind + "/" + Date.now() + "-" +
+    crypto.randomUUID() + "-" + safeFileName(file.name);
+
+  const {data, error} = await db.storage
+    .from(BUCKET)
+    .upload(path, file, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: file.type
+    });
+
+  if (error) throw error;
+
+  const result = db.storage.from(BUCKET).getPublicUrl(data.path);
+  if (!result?.data?.publicUrl) {
+    throw new Error("ফাইল আপলোড হয়েছে, কিন্তু Public URL পাওয়া যায়নি।");
+  }
+  return result.data.publicUrl;
+}
+
+async function loadArticles() {
+  showStatus("newsStatus", "সংবাদ তালিকা লোড হচ্ছে...");
+  $("newsList").innerHTML = "";
+
+  const {data, error} = await db
+    .from("news")
+    .select("id,title,slug,category,summary,content,image_url,video_url,author,published,featured,created_at")
+    .order("created_at", {ascending:false});
+
+  if (error) {
+    showStatus("newsStatus", "সংবাদ লোড করা যায়নি: " + error.message, "error");
+    return;
+  }
+
+  articles = data || [];
+  renderArticles();
+  showStatus("newsStatus", articles.length
+    ? "মোট " + articles.length + "টি সংবাদ পাওয়া গেছে।"
+    : "এখনো কোনো সংবাদ নেই।", "success");
+}
+
+function renderArticles() {
+  const list = $("newsList");
+  list.innerHTML = "";
+
+  if (!articles.length) {
+    list.textContent = "কোনো সংবাদ পাওয়া যায়নি।";
+    return;
+  }
+
+  for (const article of articles) {
+    const item = document.createElement("article");
+    item.className = "news-item" + (article.featured ? " featured" : "");
+
+    const title = document.createElement("div");
+    title.className = "news-title";
+    title.textContent = article.title || "শিরোনাম নেই";
+    item.appendChild(title);
+
+    const badges = document.createElement("div");
+    badges.className = "badges";
+
+    const category = document.createElement("span");
+    category.className = "badge";
+    category.textContent = article.category || "বিভাগ নেই";
+    badges.appendChild(category);
+
+    const publication = document.createElement("span");
+    publication.className = "badge " + (article.published ? "published" : "");
+    publication.textContent = article.published ? "প্রকাশিত" : "খসড়া";
+    badges.appendChild(publication);
+
+    if (article.featured) {
+      const featured = document.createElement("span");
+      featured.className = "badge featured-badge";
+      featured.textContent = "★ প্রধান সংবাদ";
+      badges.appendChild(featured);
+    }
+    item.appendChild(badges);
+
+    const date = document.createElement("div");
+    date.className = "muted";
+    date.textContent = formatDate(article.created_at);
+    item.appendChild(date);
+
+    if (article.image_url) {
+      const img = document.createElement("img");
+      img.className = "preview";
+      img.src = article.image_url;
+      img.alt = "সংবাদের ছবি";
+      img.loading = "lazy";
+      img.onerror = () => img.classList.add("hidden");
+      item.appendChild(img);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    function addButton(label, cls, action) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "small " + cls;
+      button.textContent = label;
+      button.addEventListener("click", action);
+      actions.appendChild(button);
+    }
+
+    addButton("সম্পাদনা", "secondary", () => editArticle(article));
+
+    if (article.published) {
+      addButton(
+        article.featured ? "★ প্রধান সংবাদ (নির্বাচিত)" : "★ প্রধান সংবাদ করুন",
+        article.featured ? "gold" : "secondary",
+        () => setFeatured(article)
+      );
+      addButton("খসড়া করুন", "secondary", () => togglePublish(article, false));
+    } else {
+      addButton("প্রকাশ করুন", "green", () => togglePublish(article, true));
+    }
+
+    if (article.featured) {
+      addButton("প্রধান থেকে সরান", "secondary", () => setFeatured(article, true));
+    }
+
+    addButton("মুছে ফেলুন", "red", () => deleteArticle(article));
+    item.appendChild(actions);
+    list.appendChild(item);
+  }
+}
+
+/*
+ * Keep only one featured article:
+ * first clear existing featured flags, then set the selected article.
+ * If setting the selected article fails, report the error instead of
+ * claiming success.
+ */
+async function setFeatured(article, removeOnly = false) {
+  if (busy) return;
+
+  if (!removeOnly && !article.published) {
+    showStatus("appStatus", "প্রধান সংবাদ করতে হলে আগে সংবাদটি প্রকাশ করুন।", "error");
+    return;
+  }
+
+  const confirmed = removeOnly
+    ? confirm("এই সংবাদকে প্রধান সংবাদ থেকে সরাবেন?")
+    : confirm("“" + article.title + "” প্রধান সংবাদ করবেন? আগের প্রধান সংবাদটি সরিয়ে দেওয়া হবে।");
+
+  if (!confirmed) return;
+
+  setBusy(true);
+  showStatus("appStatus", "প্রধান সংবাদ আপডেট হচ্ছে...");
+
+  try {
+    const {error: clearError} = await db
+      .from("news")
+      .update({featured:false})
+      .eq("featured", true);
+
+    if (clearError) throw clearError;
+
+    if (!removeOnly) {
+      const {error: setError} = await db
+        .from("news")
+        .update({featured:true})
+        .eq("id", article.id);
+
+      if (setError) throw setError;
+    }
+
+    showStatus("appStatus", removeOnly
+      ? "প্রধান সংবাদ থেকে সরানো হয়েছে।"
+      : "প্রধান সংবাদ নির্বাচন করা হয়েছে।", "success");
+
+    await loadArticles();
+  } catch (error) {
+    showStatus("appStatus", "প্রধান সংবাদ আপডেট করা যায়নি: " + error.message, "error");
+    await loadArticles();
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function togglePublish(article, published) {
+  if (busy) return;
+
+  if (!published && article.featured) {
+    const ok = confirm("এই সংবাদ খসড়া করলে এটি প্রধান সংবাদ থেকেও সরানো হবে। চালিয়ে যাবেন?");
+    if (!ok) return;
+  } else if (!confirm(published ? "সংবাদটি প্রকাশ করবেন?" : "সংবাদটি খসড়া করবেন?")) {
+    return;
+  }
+
+  setBusy(true);
+  try {
+    const patch = {published};
+    if (!published) patch.featured = false;
+
+    const {error} = await db.from("news").update(patch).eq("id", article.id);
+    if (error) throw error;
+
+    showStatus("appStatus", published ? "সংবাদ প্রকাশ করা হয়েছে।" : "সংবাদ খসড়া করা হয়েছে।", "success");
+    await loadArticles();
+  } catch (error) {
+    showStatus("appStatus", "আপডেট করা যায়নি: " + error.message, "error");
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function deleteArticle(article) {
+  if (busy) return;
+  if (!confirm("“" + article.title + "” স্থায়ীভাবে মুছে ফেলবেন? এই কাজ ফিরিয়ে নেওয়া যাবে না।")) return;
+
+  setBusy(true);
+  try {
+    const {error} = await db.from("news").delete().eq("id", article.id);
+    if (error) throw error;
+
+    if ($("newsId").value === String(article.id)) resetForm();
+    showStatus("appStatus", "সংবাদ মুছে ফেলা হয়েছে।", "success");
+    await loadArticles();
+  } catch (error) {
+    showStatus("appStatus", "সংবাদ মুছে ফেলা যায়নি: " + error.message, "error");
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function saveArticle(event) {
+  event.preventDefault();
+  if (busy) return;
+
+  const id = $("newsId").value;
+  const imageFile = $("imageFile").files[0];
+  const videoFile = $("videoFile").files[0];
+
+  const title = $("title").value.trim();
+  const category = $("category").value;
+  const content = $("content").value.trim();
+  const published = $("publishNow").checked;
+  const wantsFeatured = $("featuredNow").checked;
+
+  if (!title || !category || !content) {
+    showStatus("appStatus", "শিরোনাম, বিভাগ ও সম্পূর্ণ সংবাদ পূরণ করুন।", "error");
+    return;
+  }
+
+  if (wantsFeatured && !published) {
+    showStatus("appStatus", "প্রধান সংবাদ করতে হলে “সরাসরি প্রকাশ করুন” নির্বাচন করুন।", "error");
+    return;
+  }
+
+  setBusy(true);
+  showStatus("appStatus", "সংবাদ সংরক্ষণ হচ্ছে...");
+
+  try {
+    let image_url = $("imageUrl").value.trim();
+    let video_url = $("videoUrl").value.trim();
+
+    if (imageFile) {
+      showStatus("appStatus", "ছবি আপলোড হচ্ছে...");
+      image_url = await uploadMedia(imageFile, "image");
+      $("imageUrl").value = image_url;
+    }
+
+    if (videoFile) {
+      showStatus("appStatus", "ভিডিও আপলোড হচ্ছে...");
+      video_url = await uploadMedia(videoFile, "video");
+      $("videoUrl").value = video_url;
+    }
+
+    const record = {
+      title,
+      category,
+      summary: $("summary").value.trim(),
+      content,
+      author: $("author").value.trim() || "ক্রীড়াদিগন্ত ডেস্ক",
+      image_url: image_url || null,
+      video_url: video_url || null,
+      published,
+      featured: false
+    };
+
+    if (id) {
+      const old = articles.find(item => String(item.id) === String(id));
+      record.featured = wantsFeatured ? false : !!old?.featured && published;
+      const {error} = await db.from("news").update(record).eq("id", id);
+      if (error) throw error;
+    } else {
+      const {error} = await db.from("news").insert(record);
+      if (error) throw error;
+    }
+
+    /*
+     * Select the saved article as featured only after it has been saved.
+     * Reload the rows to locate it reliably.
+     */
+    await loadArticles();
+
+    if (wantsFeatured) {
+      const target = id
+        ? articles.find(item => String(item.id) === String(id))
+        : articles.find(item => item.title === title && item.published);
+      if (!target) {
+        showStatus("appStatus", "সংবাদ সংরক্ষিত হয়েছে, কিন্তু প্রধান সংবাদ হিসেবে শনাক্ত করা যায়নি। তালিকা রিফ্রেশ করে আবার নির্বাচন করুন।", "error");
+        return;
+      }
+
+      const {error: clearError} = await db
+        .from("news").update({featured:false}).eq("featured", true);
+      if (clearError) throw clearError;
+
+      const {error: featureError} = await db
+        .from("news").update({featured:true}).eq("id", target.id);
+      if (featureError) throw featureError;
+
+      await loadArticles();
+    }
+
+    resetForm();
+    showStatus("appStatus", wantsFeatured
+      ? "সংবাদ সংরক্ষিত এবং প্রধান সংবাদ হিসেবে নির্বাচন করা হয়েছে।"
+      : (published ? "সংবাদ প্রকাশ করে সংরক্ষণ করা হয়েছে।" : "সংবাদ খসড়া হিসেবে সংরক্ষণ করা হয়েছে।"), "success");
+
+    await loadArticles();
+  } catch (error) {
+    showStatus("appStatus", "সংরক্ষণ করা যায়নি: " + error.message, "error");
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function showApp(user) {
+  currentUser = user;
+
+  if (!user) {
+    $("loginPanel").classList.remove("hidden");
+    $("appPanel").classList.add("hidden");
+    $("logoutBtn").classList.add("hidden");
+    $("userEmail").textContent = "";
+    return;
+  }
+
+  if (!isAdmin(user)) {
+    await db.auth.signOut();
+    currentUser = null;
+    $("loginPanel").classList.remove("hidden");
+    $("appPanel").classList.add("hidden");
+    showStatus("loginStatus", "এই অ্যাকাউন্টে অ্যাডমিন অনুমতি নেই। Supabase Auth-এর app_metadata.role = admin যাচাই করুন।", "error");
+    return;
+  }
+
+  $("loginPanel").classList.add("hidden");
+  $("appPanel").classList.remove("hidden");
+  $("logoutBtn").classList.remove("hidden");
+  $("userEmail").textContent = user.email || "অ্যাডমিন";
+  showStatus("loginStatus", "");
+  await loadArticles();
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (busy) return;
+
+  setBusy(true);
+  showStatus("loginStatus", "লগইন হচ্ছে...");
+
+  try {
+    const {data, error} = await db.auth.signInWithPassword({
+      email: $("loginEmail").value.trim(),
+      password: $("loginPassword").value
+    });
+
+    if (error) throw error;
+    if (!data.user || !isAdmin(data.user)) {
+      await db.auth.signOut();
+      throw new Error("এই অ্যাকাউন্টে অ্যাডমিন অনুমতি নেই।");
+    }
+
+    await showApp(data.user);
+  } catch (error) {
+    showStatus("loginStatus", "লগইন করা যায়নি: " + error.message, "error");
+  } finally {
+    setBusy(false);
+  }
 });
 
-function resetForm(){
- $('newsForm').reset();
- $('newsId').value='';
- $('formHeading').textContent='নতুন সংবাদ লিখুন';
- $('saveBtn').textContent='সংবাদ সংরক্ষণ করুন';
- $('cancelBtn').classList.add('hidden');
- $('imagePreview').classList.add('hidden');
- $('imagePreview').removeAttribute('src');
- message('');
-}
-$('cancelBtn').addEventListener('click',resetForm);
-
-$('newsForm').addEventListener('submit',async e=>{
- e.preventDefault();
- $('saveBtn').disabled=true;
- try{
-  const id=$('newsId').value;
-  const title=$('title').value.trim();
-  let imageUrl=$('image').value.trim()||null;
-  let videoUrl=$('video').value.trim()||null;
-
-  if($('imageFile').files[0]){
-   imageUrl=await uploadFile($('imageFile').files[0],'image');
-   $('image').value=imageUrl;
+$("logoutBtn").addEventListener("click", async () => {
+  if (busy) return;
+  setBusy(true);
+  try {
+    const {error} = await db.auth.signOut();
+    if (error) throw error;
+    currentUser = null;
+    $("appPanel").classList.add("hidden");
+    $("loginPanel").classList.remove("hidden");
+    $("logoutBtn").classList.add("hidden");
+    $("userEmail").textContent = "";
+    resetForm();
+    showStatus("loginStatus", "লগআউট সম্পন্ন হয়েছে।", "success");
+  } catch (error) {
+    showStatus("appStatus", "লগআউট করা যায়নি: " + error.message, "error");
+  } finally {
+    setBusy(false);
   }
-  if($('videoFile').files[0]){
-   videoUrl=await uploadFile($('videoFile').files[0],'video');
-   $('video').value=videoUrl;
-  }
+});
 
-  message('সংবাদ সংরক্ষণ হচ্ছে...');
-  const article={
-   title,category:$('category').value,
-   summary:$('summary').value.trim()||null,
-   content:$('content').value.trim(),
-   image_url:imageUrl,video_url:videoUrl,
-   author:$('author').value.trim()||null,
-   published:$('published').checked
-  };
-  let result;
-  if(id){
-   result=await db.from('news').update(article).eq('id',Number(id)).select('id');
-  }else{
-   article.slug=makeSlug(title);
-   result=await db.from('news').insert(article).select('id');
-  }
-  if(result.error)throw result.error;
-  if(!result.data?.length)throw new Error('সংরক্ষণ নিশ্চিত হয়নি। অনুমতি পরীক্ষা করুন।');
-
-  message(id?'সংবাদ আপডেট হয়েছে।':'সংবাদ সংরক্ষিত হয়েছে।');
+$("newsForm").addEventListener("submit", saveArticle);
+$("refreshBtn").addEventListener("click", loadArticles);
+$("newBtn").addEventListener("click", () => {
   resetForm();
-  await loadNews();
- }catch(err){message('সমস্যা: '+err.message)}
- finally{$('saveBtn').disabled=false}
+  $("editorPanel").scrollIntoView({behavior:"smooth", block:"start"});
+});
+$("cancelEditBtn").addEventListener("click", resetForm);
+
+$("imageFile").addEventListener("change", () => {
+  const file = $("imageFile").files[0];
+  if (!file) return;
+  if (file.size > MAX_FILE_SIZE) {
+    showStatus("appStatus", "ছবির আকার ৫০ MB-এর বেশি।", "error");
+    $("imageFile").value = "";
+    return;
+  }
+  $("imagePreview").src = URL.createObjectURL(file);
+  $("imagePreview").classList.remove("hidden");
 });
 
-async function loadNews(){
- $('newsList').textContent='সংবাদ লোড হচ্ছে...';
- const {data,error}=await db.from('news')
- .select('id,title,category,published,created_at')
- .order('created_at',{ascending:false}).limit(100);
- if(error){$('newsList').textContent='তালিকা লোড হয়নি: '+error.message;return}
- $('newsList').replaceChildren();
- if(!data.length){$('newsList').textContent='এখনো কোনো সংবাদ নেই।';return}
-
- data.forEach(item=>{
-  const box=document.createElement('article');box.className='item';
-  const h=document.createElement('h3');h.textContent=item.title;
-  const meta=document.createElement('p');meta.className='meta';
-  meta.textContent=item.category+' • '+(item.published?'প্রকাশিত':'খসড়া')+
-   ' • '+new Date(item.created_at).toLocaleDateString('bn-BD');
-  const actions=document.createElement('div');actions.className='actions';
-
-  const edit=document.createElement('button');edit.type='button';
-  edit.className='secondary';edit.textContent='সম্পাদনা';
-  edit.addEventListener('click',()=>editNews(item.id));
-
-  const vis=document.createElement('button');vis.type='button';
-  vis.className='secondary';vis.textContent=item.published?'খসড়া করুন':'প্রকাশ করুন';
-  vis.addEventListener('click',()=>togglePublished(item.id,!item.published));
-
-  const del=document.createElement('button');del.type='button';
-  del.className='danger';del.textContent='মুছে ফেলুন';
-  del.addEventListener('click',()=>deleteNews(item.id,item.title));
-
-  actions.append(edit,vis,del);box.append(h,meta,actions);$('newsList').append(box);
- });
-}
-
-async function editNews(id){
- message('সংবাদ খোঁজা হচ্ছে...');
- const {data,error}=await db.from('news').select('*').eq('id',id).single();
- if(error){message('সংবাদ খোলা যায়নি: '+error.message);return}
- $('newsId').value=data.id;
- $('title').value=data.title||'';
- $('category').value=data.category||'';
- $('summary').value=data.summary||'';
- $('content').value=data.content||'';
- $('image').value=data.image_url||'';
- $('video').value=data.video_url||'';
- $('author').value=data.author||'';
- $('published').checked=!!data.published;
- $('imageFile').value='';$('videoFile').value='';
- $('imagePreview').classList.add('hidden');
- $('formHeading').textContent='সংবাদ সম্পাদনা করুন';
- $('saveBtn').textContent='পরিবর্তন সংরক্ষণ করুন';
- $('cancelBtn').classList.remove('hidden');
- message('সংবাদ সম্পাদনার জন্য প্রস্তুত।');
- window.scrollTo({top:0,behavior:'smooth'});
-}
-
-async function togglePublished(id,published){
- if(!confirm('সংবাদটি '+(published?'প্রকাশ':'খসড়া')+' করতে চান?'))return;
- const {data,error}=await db.from('news').update({published}).eq('id',id).select('id');
- if(error){alert('পরিবর্তন হয়নি: '+error.message);return}
- if(!data?.length){alert('অনুমতি পরীক্ষা করুন।');return}
- await loadNews();
-}
-
-async function deleteNews(id,title){
- if(!confirm('সংবাদটি স্থায়ীভাবে মুছে ফেলতে চান?\n\n'+title))return;
- const {data,error}=await db.from('news').delete().eq('id',id).select('id');
- if(error){alert('মুছে ফেলা যায়নি: '+error.message);return}
- if(!data?.length){alert('মুছে ফেলার অনুমতি পাওয়া যায়নি।');return}
- if($('newsId').value===String(id))resetForm();
- alert('সংবাদ ডেটাবেস থেকে মুছে ফেলা হয়েছে।');
- await loadNews();
-}
-
-$('refreshBtn').addEventListener('click',loadNews);
-$('logoutBtn').addEventListener('click',async()=>{
- await db.auth.signOut();location.reload();
+$("videoFile").addEventListener("change", () => {
+  const file = $("videoFile").files[0];
+  if (file && file.size > MAX_FILE_SIZE) {
+    showStatus("appStatus", "ভিডিওর আকার ৫০ MB-এর বেশি।", "error");
+    $("videoFile").value = "";
+  }
 });
-checkSession();
+
+$("imageUrl").addEventListener("input", () => {
+  const url = $("imageUrl").value.trim();
+  if (url) {
+    $("imagePreview").src = url;
+    $("imagePreview").classList.remove("hidden");
+  } else {
+    $("imagePreview").classList.add("hidden");
+  }
+});
+
+db.auth.onAuthStateChange((event, session) => {
+  if (event === "SIGNED_OUT") {
+    currentUser = null;
+    $("appPanel").classList.add("hidden");
+    $("loginPanel").classList.remove("hidden");
+    $("logoutBtn").classList.add("hidden");
+    $("userEmail").textContent = "";
+  }
+});
+
+(async function init() {
+  try {
+    const {data, error} = await db.auth.getSession();
+    if (error) throw error;
+
+    if (data.session?.user) {
+      const {data:userData, error:userError} = await db.auth.getUser();
+      if (userError) throw userError;
+      await showApp(userData.user);
+    }
+  } catch (error) {
+    showStatus("loginStatus", "অ্যাডমিন প্যানেল চালু করা যায়নি: " + error.message, "error");
+  }
+})();
 </script>
 </body>
 </html>
