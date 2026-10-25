@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>যোগাযোগ | ক্রীড়াদিগন্ত</title>
+  <meta name="description" content="ক্রীড়াদিগন্তের সঙ্গে যোগাযোগ করুন। ক্রীড়া সংবাদ, সংবাদ সংশোধন, ছবি, ভিডিও ও তথ্য পাঠানোর নির্দেশনা দেখুন।">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="যোগাযোগ | ক্রীড়াদিগন্ত">
+  <meta property="og:description" content="ক্রীড়াদিগন্তের সঙ্গে যোগাযোগ করুন।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kriradiganta-news.vercel.app/contact.html">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Bengali", sans-serif;
+      background: #f1f5fb;
+      color: #182333;
+      line-height: 1.85;
+    }
+    header {
+      background: #08213b;
+      color: white;
+      padding: 22px 16px;
+      border-bottom: 4px solid #e63950;
+    }
+    .wrap { max-width: 900px; margin: auto; }
+    .brand { font-size: 25px; font-weight: 700; }
+    .sub { font-size: 11px; letter-spacing: 2px; }
+    nav { margin-top: 12px; font-size: 14px; }
+    nav a { color: white; margin-right: 16px; text-decoration: none; }
+    main {
+      max-width: 900px;
+      margin: 28px auto;
+      padding: 28px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px #142c4410;
+    }
+    h1 { color: #08213b; line-height: 1.5; }
+    h2 { color: #b72e43; font-size: 20px; margin-top: 26px; }
+    .note {
+      background: #f1f5fb;
+      padding: 16px;
+      border-left: 4px solid #e63950;
+      border-radius: 6px;
+    }
+    footer {
+      background: #06182b;
+      color: white;
+      padding: 24px 16px;
+      text-align: center;
+      font-size: 13px;
+    }
+    footer a { color: white; }
+    main a { color: #b72e43; }
+    @media(max-width:600px) {
+      main { margin: 16px 12px; padding: 20px 16px; }
+      .brand { font-size: 22px; }
+      nav a { display: inline-block; margin: 4px 12px 4px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">ক্রীড়াদিগন্ত</div>
+      <div class="sub">KRIRADIGANTA · SPORTS NEWS</div>
+      <nav>
+        <a href="/">হোম</a>
+        <a href="/about.html">আমাদের সম্পর্কে</a>
+        <a href="/contact.html">যোগাযোগ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>যোগাযোগ করুন</h1>
+    <p>ক্রীড়াদিগন্তের সঙ্গে যোগাযোগ করার জন্য আপনাকে স্বাগতম। ক্রীড়া সংবাদ, স্থানীয় প্রতিযোগিতা, খেলোয়াড়দের সাফল্য, ছবি, ভিডিও, তথ্যগত ভুল সংশোধন অথবা অন্যান্য বিষয়ে আমাদের কাছে তথ্য পাঠাতে পারেন।</p>
+
+    <h2>কীভাবে তথ্য পাঠাবেন</h2>
+    <ul>
+      <li>খেলার নাম, প্রতিযোগিতার নাম ও তারিখ উল্লেখ করুন।</li>
+      <li>ঘটনার স্থান এবং সংশ্লিষ্ট ব্যক্তি বা প্রতিষ্ঠানের নাম দিন।</li>
+      <li>প্রাসঙ্গিক ছবি বা ভিডিও থাকলে তার বিবরণ দিন এবং ব্যবহারের অনুমতি নিশ্চিত করুন।</li>
+      <li>তথ্যের উৎস ও আপনার যোগাযোগের উপায় উল্লেখ করুন।</li>
+    </ul>
+
+    <h2>সংবাদ সংশোধন</h2>
+    <p>কোনো প্রকাশিত সংবাদে তথ্যগত ভুল দেখতে পেলে সংবাদটির শিরোনাম ও লিংকসহ ভুলের বিবরণ পাঠান। প্রয়োজনীয় তথ্য যাচাই করে সংশোধনের বিষয়ে সিদ্ধান্ত নেওয়া হবে।</p>
+
+    <h2>যোগাযোগের তথ্য</h2>
+    <div class="note">
+      <p><strong>ওয়েবসাইট:</strong>
+        <a href="https://kriradiganta-news.vercel.app/">kriradiganta-news.vercel.app</a>
+      </p>
+      <p><strong>ইমেইল:</strong> আপনার প্রকাশ্য যোগাযোগের ইমেইল এখানে যুক্ত করুন।</p>
+      <p><strong>সামাজিক যোগাযোগমাধ্যম:</strong> আপনার অফিসিয়াল পেজের লিংক এখানে যুক্ত করুন।</p>
+    </div>
+
+    <p><strong>গুরুত্বপূর্ণ:</strong> প্রকাশ করার আগে ইমেইল ও সামাজিক যোগাযোগমাধ্যমের জায়গায় আপনার সঠিক, সক্রিয় যোগাযোগের তথ্য বসিয়ে নেবেন।</p>
+  </main>
+
+  <footer>
+    <p><strong>ক্রীড়াদিগন্ত | KRIRADIGANTA Sports News</strong></p>
+    <p>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</p>
+    <p>
+      <a href="/">হোম</a> ·
+      <a href="/about.html">আমাদের সম্পর্কে</a> ·
+      <a href="/contact.html">যোগাযোগ</a>
+    </p>
+    <p>© 2026 ক্রীড়াদিগন্ত। সর্বস্বত্ব সংরক্ষিত।</p>
+  </footer>
+</body>
+</html>
