@@ -1,78 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101d35">
+  <meta name="description" content="ক্রীড়াদিগন্ত — তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গনের সংবাদ।">
   <title>সংবাদ | ক্রীড়াদিগন্ত</title>
-  <meta name="description" content="ক্রীড়াদিগন্তের সর্বশেষ ক্রীড়া সংবাদ।">
+
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Arial, "Noto Sans Bengali", sans-serif;
       background: #f3f5f8;
       color: #172238;
-      line-height: 1.8;
+      line-height: 1.85;
     }
+
     header {
       background: #101d35;
-      color: white;
+      color: #fff;
       padding: 18px 16px;
       border-bottom: 4px solid #e63946;
     }
+
     .head, main, footer {
       max-width: 900px;
       margin: auto;
     }
-    .brand { font-size: 25px; font-weight: 800; }
+
+    .brand { font-size: 27px; font-weight: 800; }
     .english { font-size: 12px; letter-spacing: 2px; }
-    nav { margin-top: 10px; }
-    nav a { color: white; text-decoration: none; margin-right: 15px; }
-    main { padding: 20px 15px; min-height: 65vh; }
-    .back { color: #c62836; font-weight: bold; }
+    .tagline { font-size: 14px; }
+
+    nav { margin-top: 12px; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 18px;
+    }
+
+    main { padding: 22px 14px; min-height: 65vh; }
+
+    .back {
+      display: inline-block;
+      color: #c62836;
+      font-weight: bold;
+      margin-bottom: 16px;
+      text-decoration: none;
+    }
+
     article {
       background: white;
-      padding: 22px;
+      padding: 24px;
       border-radius: 12px;
-      box-shadow: 0 3px 14px #17223812;
+      box-shadow: 0 3px 15px #17223812;
     }
-    h1 { line-height: 1.5; font-size: 30px; margin: 8px 0; }
+
+    .category {
+      display: inline-block;
+      background: #fff0f0;
+      color: #b42332;
+      border-radius: 5px;
+      padding: 2px 10px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.5;
+      margin: 12px 0;
+    }
+
     .meta { color: #667085; font-size: 14px; }
+
     .hero {
+      display: block;
       width: 100%;
       max-height: 480px;
       object-fit: cover;
-      border-radius: 8px;
-      margin: 16px 0;
+      border-radius: 9px;
+      margin: 20px 0;
     }
+
     .summary {
       font-size: 18px;
       font-weight: bold;
       color: #36445a;
       border-left: 4px solid #e63946;
-      padding-left: 12px;
+      padding-left: 14px;
+      margin: 20px 0;
     }
-    #content { white-space: pre-wrap; overflow-wrap: anywhere; }
-    .message { text-align: center; padding: 40px 12px; }
+
+    #content { overflow-wrap: anywhere; white-space: pre-wrap; }
+
+    .share-box {
+      margin-top: 28px;
+      padding: 18px;
+      background: #f3f5f8;
+      border-radius: 10px;
+    }
+
+    .share-box h2 { font-size: 19px; margin-top: 0; }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 7px;
+      padding: 10px 16px;
+      margin: 4px 5px 4px 0;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .share-btn { background: #1877f2; }
+    .copy-btn { background: #101d35; }
+    .status { font-size: 14px; overflow-wrap: anywhere; }
+
+    .message {
+      text-align: center;
+      background: white;
+      padding: 32px 16px;
+      border-radius: 10px;
+    }
+
     footer {
-      padding: 20px 15px;
+      padding: 22px 15px;
       color: #667085;
       font-size: 13px;
     }
+
     @media (max-width: 600px) {
       h1 { font-size: 24px; }
-      article { padding: 16px; }
+      article { padding: 17px; }
+      .brand { font-size: 24px; }
+      .btn { width: 100%; margin: 5px 0; }
     }
   </style>
 </head>
+
 <body>
 <header>
   <div class="head">
     <div class="brand">ক্রীড়াদিগন্ত</div>
     <div class="english">KRIRADIGANTA • SPORTS NEWS</div>
-    <div>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</div>
+    <div class="tagline">তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</div>
+
     <nav>
       <a href="./index.html">প্রচ্ছদ</a>
       <a href="./index.html#news-list">সর্বশেষ সংবাদ</a>
@@ -87,7 +163,7 @@
 
 <footer>
   © <span id="year"></span> ক্রীড়াদিগন্ত (KRIRADIGANTA)
-  • তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন
+  <br>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন
 </footer>
 
 <script type="module">
@@ -103,7 +179,7 @@
   document.getElementById('year').textContent =
     new Date().getFullYear();
 
-  function safeText(value) {
+  function escapeHTML(value) {
     return String(value ?? '').replace(/[&<>"']/g, ch => ({
       '&': '&amp;',
       '<': '&lt;',
@@ -113,10 +189,11 @@
     })[ch]);
   }
 
-  function safeImageUrl(value) {
+  function validImageURL(value) {
     try {
-      const u = new URL(value);
-      return ['https:', 'http:'].includes(u.protocol) ? u.href : '';
+      const url = new URL(value);
+      return ['https:', 'http:'].includes(url.protocol)
+        ? url.href : '';
     } catch {
       return '';
     }
@@ -131,65 +208,119 @@
         (id && !/^\d+$/.test(id)) ||
         (slug && slug.length > 200)) {
       area.innerHTML =
-        '<div class="message">সংবাদ খুঁজে পাওয়া যায়নি। ' +
+        '<div class="message">সংবাদের লিংক সঠিক নয়।' +
         '<p><a href="./index.html">প্রচ্ছদে ফিরে যান</a></p></div>';
       return;
     }
 
     let query = db.from('news')
-      .select('id,title,category,summary,content,image_url,author,created_at')
+      .select('id,title,slug,category,summary,content,image_url,author,created_at')
       .eq('published', true);
 
-    query = id ? query.eq('id', Number(id)) : query.eq('slug', slug);
+    query = id
+      ? query.eq('id', Number(id))
+      : query.eq('slug', slug);
 
     const { data, error } = await query.maybeSingle();
 
     if (error) {
       area.innerHTML =
         '<div class="message">সংবাদ লোড করা যায়নি। ' +
-        'ইন্টারনেট সংযোগ দিয়ে আবার চেষ্টা করুন।</div>';
+        'ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।</div>';
       return;
     }
 
     if (!data) {
       area.innerHTML =
-        '<div class="message">এই সংবাদটি পাওয়া যায়নি অথবা এটি প্রকাশিত নয়।' +
+        '<div class="message">এই সংবাদটি পাওয়া যায়নি অথবা প্রকাশিত নয়.' +
         '<p><a href="./index.html">প্রচ্ছদে ফিরে যান</a></p></div>';
       return;
     }
 
-    const title = safeText(data.title);
-    const category = safeText(data.category);
-    const summary = safeText(data.summary);
-    const content = safeText(data.content);
-    const author = safeText(data.author || 'ক্রীড়াদিগন্ত ডেস্ক');
+    const title = escapeHTML(data.title);
+    const category = escapeHTML(data.category);
+    const summary = escapeHTML(data.summary);
+    const content = escapeHTML(data.content);
+    const author = escapeHTML(data.author || 'ক্রীড়াদিগন্ত ডেস্ক');
+
     const date = data.created_at
       ? new Date(data.created_at).toLocaleDateString('bn-BD', {
-          year: 'numeric', month: 'long', day: 'numeric'
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
         })
       : '';
 
-    const imageUrl = safeImageUrl(data.image_url);
-    const image = imageUrl
-      ? `<img class="hero" src="${safeText(imageUrl)}"
-          alt="${title}" loading="lazy">`
+    const imageURL = validImageURL(data.image_url);
+    const imageHTML = imageURL
+      ? `<img class="hero" src="${escapeHTML(imageURL)}"
+           alt="${title}" loading="lazy">`
       : '';
 
     area.className = '';
     area.innerHTML = `
       <article>
-        <div class="meta">${category}</div>
+        <div class="category">${category}</div>
         <h1>${title}</h1>
-        <div class="meta">${date} • সংবাদদাতা: ${author}</div>
-        ${image}
-        ${summary ? `<p class="summary">${summary}</p>` : ''}
+        <div class="meta">${date} · সংবাদদাতা: ${author}</div>
+        ${imageHTML}
+        ${summary ? `<div class="summary">${summary}</div>` : ''}
         <div id="content">${content}</div>
+
+        <div class="share-box">
+          <h2>সংবাদটি শেয়ার করুন</h2>
+          <button type="button" id="shareButton"
+            class="btn share-btn">শেয়ার করুন</button>
+          <button type="button" id="copyButton"
+            class="btn copy-btn">লিংক কপি করুন</button>
+          <p id="shareStatus" class="status" aria-live="polite"></p>
+        </div>
+
         <hr>
-        <p><a class="back" href="./index.html">← আরও সংবাদ পড়ুন</a></p>
+        <a class="back" href="./index.html">← আরও সংবাদ পড়ুন</a>
       </article>
     `;
 
     document.title = `${data.title} | ক্রীড়াদিগন্ত`;
+
+    const shareButton = document.getElementById('shareButton');
+    const copyButton = document.getElementById('copyButton');
+    const status = document.getElementById('shareStatus');
+
+    shareButton.addEventListener('click', async () => {
+      const shareData = {
+        title: data.title,
+        text: data.title + ' — ক্রীড়াদিগন্ত',
+        url: location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            status.textContent =
+              'শেয়ার করা যায়নি। লিংক কপি করে পাঠাতে পারেন।';
+          }
+        }
+      } else {
+        await copyLink();
+      }
+    });
+
+    async function copyLink() {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        status.textContent =
+          'লিংক কপি হয়েছে। এখন ফেসবুক, মেসেঞ্জার বা অন্য অ্যাপে পাঠান।';
+      } catch {
+        status.textContent =
+          'লিংক কপি করতে ব্রাউজারের ঠিকানা থেকে URL কপি করুন: ' +
+          location.href;
+      }
+    }
+
+    copyButton.addEventListener('click', copyLink);
   }
 
   loadNews();
