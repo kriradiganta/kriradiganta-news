@@ -119,9 +119,29 @@
       margin: 18px 0;
     }
 
+    .video-section {
+      margin: 22px 0;
+    }
+
+    .video-heading {
+      color: #075d39;
+      font-size: 20px;
+      margin: 0 0 10px;
+    }
+
+    .video-player {
+      display: block;
+      width: 100%;
+      max-height: 520px;
+      aspect-ratio: 16 / 9;
+      background: #111;
+      border-radius: 10px;
+    }
+
     .content {
       font-size: 18px;
       overflow-wrap: anywhere;
+      white-space: pre-wrap;
     }
 
     .content p { margin: 0 0 18px; }
@@ -145,6 +165,8 @@
       cursor: pointer;
     }
 
+    button:hover { background: #065c35; }
+
     .back {
       display: inline-block;
       margin-bottom: 16px;
@@ -167,6 +189,7 @@
     @media (max-width: 600px) {
       article { padding: 16px; }
       .content { font-size: 17px; }
+      .video-player { max-height: 360px; }
     }
   </style>
 </head>
@@ -193,7 +216,22 @@
       <h1 id="title"></h1>
       <p class="summary" id="summary" hidden></p>
       <div class="meta" id="meta"></div>
+
       <img class="cover" id="cover" alt="" hidden>
+
+      <section class="video-section" id="videoSection" hidden>
+        <h2 class="video-heading">ভিডিও সংবাদ</h2>
+        <video
+          class="video-player"
+          id="videoPlayer"
+          controls
+          playsinline
+          preload="metadata"
+        >
+          আপনার ব্রাউজার ভিডিও চালাতে সমর্থ নয়।
+        </video>
+      </section>
+
       <div class="content" id="content"></div>
 
       <div class="share">
@@ -220,7 +258,6 @@
     const SITE_URL = "https://kriradiganta-news.vercel.app";
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
     const $ = (id) => document.getElementById(id);
 
     $("year").textContent = new Date().getFullYear();
@@ -250,23 +287,17 @@
       link.href = url;
     }
 
-    function escapeHTML(value) {
-      return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      })[char]);
-    }
+    function safeMediaURL(value) {
+      if (!value || typeof value !== "string") return "";
 
-    function safeImageURL(value) {
       try {
         const url = new URL(value, SITE_URL);
+
         if (url.protocol === "https:" || url.protocol === "http:") {
           return url.href;
         }
       } catch (_) {}
+
       return "";
     }
 
@@ -283,7 +314,7 @@
       }).format(date);
     }
 
-    function setArticleSchema(data, canonical, imageURL) {
+    function setArticleSchema(data, canonical, imageURL, videoURL) {
       let schema = document.getElementById("newsArticleSchema");
 
       if (!schema) {
@@ -314,7 +345,15 @@
           "name": "ক্রীড়াদিগন্ত",
           "url": SITE_URL
         },
-        "image": imageURL ? [imageURL] : undefined
+        "image": imageURL ? [imageURL] : undefined,
+        "video": videoURL ? {
+          "@type": "VideoObject",
+          "name": data.title,
+          "description": data.summary || data.title,
+          "contentUrl": videoURL,
+          "uploadDate": data.created_at || undefined,
+          "thumbnailUrl": imageURL || undefined
+        } : undefined
       };
 
       schema.textContent = JSON.stringify(articleSchema);
@@ -325,23 +364,30 @@
       const id = params.get("id");
       const slug = params.get("slug");
 
-      if ((!id && !slug) ||
-          (id && !/^\d+$/.test(id)) ||
-          (slug && slug.length > 200)) {
+      if (
+        (!id && !slug) ||
+        (id && !/^\d+$/.test(id)) ||
+        (slug && slug.length > 200)
+      ) {
         $("message").textContent = "সংবাদটি খুঁজে পাওয়া যায়নি।";
         return;
       }
 
       let query = supabase
         .from("news")
-        .select("id,title,slug,category,summary,content,image_url,author,created_at")
+        .select(
+          "id,title,slug,category,summary,content,image_url,video_url,author,created_at"
+        )
         .eq("published", true);
 
-      query = id ? query.eq("id", Number(id)) : query.eq("slug", slug);
+      query = id
+        ? query.eq("id", Number(id))
+        : query.eq("slug", slug);
 
       const { data, error } = await query.maybeSingle();
 
       if (error || !data) {
+        console.error("News load error:", error);
         $("message").textContent =
           "সংবাদটি পাওয়া যায়নি অথবা বর্তমানে প্রকাশিত নয়।";
         return;
@@ -354,7 +400,8 @@
         .slice(0, 300);
 
       const canonical = `${SITE_URL}/news.html?id=${data.id}`;
-      const imageURL = safeImageURL(data.image_url);
+      const imageURL = safeMediaURL(data.image_url);
+      const videoURL = safeMediaURL(data.video_url);
 
       document.title = `${title} | ক্রীড়াদিগন্ত`;
 
@@ -366,8 +413,12 @@
       setMeta('meta[property="og:site_name"]', "content", "ক্রীড়াদিগন্ত");
       setMeta('meta[property="og:locale"]', "content", "bn_BD");
       setMeta('meta[property="og:image"]', "content", imageURL);
-      setMeta('meta[name="twitter:card"]', "content",
-        imageURL ? "summary_large_image" : "summary");
+
+      setMeta(
+        'meta[name="twitter:card"]',
+        "content",
+        imageURL ? "summary_large_image" : "summary"
+      );
       setMeta('meta[name="twitter:title"]', "content", title);
       setMeta('meta[name="twitter:description"]', "content", description);
 
@@ -376,7 +427,7 @@
       }
 
       setCanonical(canonical);
-      setArticleSchema(data, canonical, imageURL);
+      setArticleSchema(data, canonical, imageURL, videoURL);
 
       $("category").textContent = data.category || "ক্রীড়া সংবাদ";
       $("title").textContent = title;
@@ -384,6 +435,8 @@
       if (data.summary) {
         $("summary").textContent = data.summary;
         $("summary").hidden = false;
+      } else {
+        $("summary").hidden = true;
       }
 
       const author = data.author || "ক্রীড়াদিগন্ত ডেস্ক";
@@ -392,13 +445,38 @@
       $("meta").textContent =
         `প্রকাশক: ${author}${date ? " · প্রকাশের তারিখ: " + date : ""}`;
 
+      const cover = $("cover");
+
       if (imageURL) {
-        $("cover").src = imageURL;
-        $("cover").alt = title;
-        $("cover").hidden = false;
+        cover.src = imageURL;
+        cover.alt = title;
+        cover.hidden = false;
+      } else {
+        cover.removeAttribute("src");
+        cover.alt = "";
+        cover.hidden = true;
       }
 
-      // Article content is displayed as text, not executable HTML.
+      const videoSection = $("videoSection");
+      const videoPlayer = $("videoPlayer");
+
+      if (videoURL) {
+        videoPlayer.src = videoURL;
+        videoPlayer.poster = imageURL || "";
+        videoSection.hidden = false;
+
+        videoPlayer.onerror = () => {
+          console.error("ভিডিও চালানো যায়নি:", videoURL);
+        };
+      } else {
+        videoPlayer.pause();
+        videoPlayer.removeAttribute("src");
+        videoPlayer.removeAttribute("poster");
+        videoPlayer.load();
+        videoSection.hidden = true;
+      }
+
+      // সংবাদকে সাধারণ টেক্সট হিসেবে দেখানো হয়।
       $("content").textContent = data.content || "";
 
       $("message").hidden = true;
@@ -435,7 +513,8 @@
       });
     }
 
-    loadNews().catch(() => {
+    loadNews().catch((error) => {
+      console.error("Unexpected news error:", error);
       $("message").textContent =
         "সংবাদ লোড করা যায়নি। ইন্টারনেট সংযোগ দিয়ে আবার চেষ্টা করুন।";
     });
