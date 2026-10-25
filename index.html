@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -7,8 +6,9 @@
 <meta name="theme-color" content="#071d33">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <title>ক্রীড়াদিগন্ত | KRIRADIGANTA — Sports News</title>
-<meta name="description" content="বাংলাদেশের তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গনের সর্বশেষ ফুটবল, ক্রিকেট, নারী ক্রীড়া ও সব খেলার সংবাদ।">
+<meta name="description" content="বাংলাদেশের তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গনের সর্বশেষ ক্রীড়া সংবাদ।">
 <link rel="canonical" href="https://kriradiganta-news.vercel.app/">
+
 <style>
 *{box-sizing:border-box}
 :root{--navy:#071d33;--blue:#103b60;--red:#e32636;--paper:#f2f4f7;--muted:#657386;--green:#087443}
@@ -35,10 +35,10 @@ main{padding:22px 0 42px}
 .hero{display:grid;grid-template-columns:1.25fr 1fr;background:white;border-radius:13px;overflow:hidden;box-shadow:0 4px 20px #13263a12}
 .heroimg{min-height:330px;background:linear-gradient(135deg,#103b60,#071d33);position:relative;display:flex;align-items:center;justify-content:center;color:white;overflow:hidden}
 .heroimg img{position:absolute;width:100%;height:100%;object-fit:cover;inset:0}
-.heroimg:has(img)::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#041321bb,transparent 75%)}
-.heroimg .placeholder{font-size:78px;text-align:center}
-.heroimg .placeholder small{display:block;font-size:13px;color:#d9e7f3}
-.heroimg .media-label{position:absolute;z-index:1;bottom:16px;left:18px;background:#071d33d9;padding:4px 9px;border-radius:5px;font-size:12px}
+.heroimg:has(img)::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#041321bb,transparent 75%);pointer-events:none}
+.placeholder{font-size:78px;text-align:center}
+.placeholder small{display:block;font-size:13px;color:#d9e7f3}
+.media-label{position:absolute;z-index:1;bottom:16px;left:18px;background:#071d33d9;padding:4px 9px;border-radius:5px;font-size:12px}
 .heroText{padding:27px;align-self:center}
 .kicker,.category{font-size:12px;color:var(--red);font-weight:900}
 h1{font-size:clamp(24px,3vw,34px);line-height:1.5;margin:9px 0}
@@ -64,7 +64,9 @@ h1{font-size:clamp(24px,3vw,34px);line-height:1.5;margin:9px 0}
 .card-img{height:195px;background:#dfe6ec;position:relative;display:grid;place-items:center;overflow:hidden}
 .card-img img{width:100%;height:100%;object-fit:cover}
 .no-img{font-size:45px}
-.video-tag{position:absolute;right:10px;top:10px;background:#071d33e8;color:white;border-radius:5px;padding:4px 8px;font-size:12px}
+.video-tag,.featured-tag{position:absolute;top:10px;color:white;border-radius:5px;padding:4px 8px;font-size:12px}
+.video-tag{right:10px;background:#071d33e8}
+.featured-tag{left:10px;background:var(--red);font-weight:bold}
 .card-body{padding:16px}
 .card-body .category{display:block;margin-bottom:7px}
 .card-body h3{font-size:18px;line-height:1.6;margin:0 0 8px;overflow-wrap:anywhere}
@@ -72,7 +74,6 @@ h1{font-size:clamp(24px,3vw,34px);line-height:1.5;margin:9px 0}
 .card-meta{font-size:12px;color:var(--muted)}
 .read-link{display:inline-block;color:var(--green);font-weight:bold;font-size:14px;margin-top:9px}
 .state{background:white;border-radius:10px;padding:25px;text-align:center;color:var(--muted);grid-column:1/-1}
-.state a{color:var(--green);font-weight:bold}
 .about{margin-top:30px}
 .aboutbox{background:white;border-radius:11px;padding:22px;line-height:1.9}
 footer{background:var(--navy);color:white;padding:27px 0}
@@ -80,113 +81,92 @@ footer p{font-size:13px;color:#c9d7e5;margin:5px 0}
 .footrow{align-items:flex-start}
 .footlinks{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:#d7e1eb}
 @media(max-width:760px){
- .hero{grid-template-columns:1fr}
- .heroimg{min-height:220px}
- .heroText{padding:21px}
- .categories{grid-template-columns:repeat(2,minmax(0,1fr))}
- .newsgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
- .card-img{height:145px}
- .card-body{padding:12px}
- .card-body h3{font-size:16px}
- .card-body p{font-size:13px}
- .sectionhead h2{font-size:19px}
- .footrow{flex-direction:column}
+.hero{grid-template-columns:1fr}.heroimg{min-height:220px}.heroText{padding:21px}
+.categories{grid-template-columns:repeat(2,minmax(0,1fr))}
+.newsgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.card-img{height:145px}.card-body{padding:12px}
+.card-body h3{font-size:16px}.card-body p{font-size:13px}
+.sectionhead h2{font-size:19px}.footrow{flex-direction:column}
 }
 @media(max-width:430px){
- .newsgrid{grid-template-columns:1fr}
- .card-img{height:210px}
- .topline .wrap{font-size:10px}
- .brand{font-size:25px}
- .logo{width:47px;height:47px;font-size:21px}
- .tag{font-size:12px}
+.newsgrid{grid-template-columns:1fr}.card-img{height:210px}
+.topline .wrap{font-size:10px}.brand{font-size:25px}
+.logo{width:47px;height:47px;font-size:21px}.tag{font-size:12px}
 }
 </style>
 </head>
+
 <body>
 <div class="topline"><div class="wrap"><span>বাংলাদেশের ক্রীড়াঙ্গনের সংবাদ</span><span>KRIRADIGANTA • SPORTS NEWS</span></div></div>
 
 <header>
-  <div class="wrap brandrow">
-    <div class="logo">ক্রী</div>
-    <div>
-      <div class="brand">ক্রীড়াদিগন্ত</div>
-      <div class="english">KRIRADIGANTA</div>
-      <div class="tag">তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</div>
-    </div>
+<div class="wrap brandrow">
+  <div class="logo">ক্রী</div>
+  <div>
+    <div class="brand">ক্রীড়াদিগন্ত</div>
+    <div class="english">KRIRADIGANTA</div>
+    <div class="tag">তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</div>
   </div>
+</div>
 </header>
 
-<nav>
-  <div class="wrap navinner">
-    <a href="/">প্রচ্ছদ</a>
-    <a href="#football">ফুটবল</a>
-    <a href="#cricket">ক্রিকেট</a>
-    <a href="#women">নারী ক্রীড়া</a>
-    <a href="#local">তৃণমূল ক্রীড়া</a>
-    <a href="#other">অন্যান্য খেলা</a>
-    <a href="#latest">সর্বশেষ সংবাদ</a>
-    <a href="#about">আমাদের সম্পর্কে</a>
-  </div>
-</nav>
+<nav><div class="wrap navinner">
+<a href="/">প্রচ্ছদ</a><a href="#football">ফুটবল</a><a href="#cricket">ক্রিকেট</a>
+<a href="#women">নারী ক্রীড়া</a><a href="#local">তৃণমূল ক্রীড়া</a>
+<a href="#other">অন্যান্য খেলা</a><a href="#latest">সর্বশেষ সংবাদ</a><a href="#about">আমাদের সম্পর্কে</a>
+</div></nav>
 
-<div class="breaking">
-  <div class="wrap"><strong>ক্রীড়া বার্তা</strong><span>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন—খেলাধুলার প্রতিটি গল্পে ক্রীড়াদিগন্ত</span></div>
-</div>
+<div class="breaking"><div class="wrap"><strong>ক্রীড়া বার্তা</strong><span>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন—খেলাধুলার প্রতিটি গল্পে ক্রীড়াদিগন্ত</span></div></div>
 
 <main class="wrap">
-  <section class="hero" aria-label="প্রধান সংবাদ">
-    <div class="heroimg" id="heroImage">
-      <div class="placeholder">⚽<small>KRIRADIGANTA SPORTS</small></div>
-    </div>
-    <div class="heroText">
-      <div class="kicker">প্রধান সংবাদ • TOP STORY</div>
-      <h1 id="heroTitle">বাংলাদেশের ক্রীড়াঙ্গনের প্রতিটি গল্প পৌঁছে যাক সবার কাছে</h1>
-      <p id="heroSummary">জেলা ও তৃণমূল পর্যায়ের প্রতিভা, জাতীয় দলের সাফল্য, নারী ক্রীড়া এবং সব খেলার সংবাদ নিয়ে ক্রীড়াদিগন্তের পথচলা।</p>
-      <a class="readmore" id="heroLink" href="#latest">সর্বশেষ সংবাদ দেখুন →</a>
-    </div>
-  </section>
-
-  <div class="sectionhead"><h2>খেলার বিভাগ</h2><span>SPORTS CATEGORIES</span></div>
-  <section class="categories">
-    <a class="cat" id="football" href="#latest" data-category="ফুটবল"><div class="symbol">⚽</div><strong>ফুটবল</strong><small>FOOTBALL</small></a>
-    <a class="cat" id="cricket" href="#latest" data-category="ক্রিকেট"><div class="symbol">🏏</div><strong>ক্রিকেট</strong><small>CRICKET</small></a>
-    <a class="cat" id="women" href="#latest" data-category="নারী ক্রীড়া"><div class="symbol">🏆</div><strong>নারী ক্রীড়া</strong><small>WOMEN IN SPORTS</small></a>
-    <a class="cat" id="local" href="#latest" data-category="তৃণমূল ক্রীড়া"><div class="symbol">🌟</div><strong>তৃণমূল ক্রীড়া</strong><small>GRASSROOTS</small></a>
-    <a class="cat" id="other" href="#latest" data-category="অন্যান্য খেলা"><div class="symbol">🏅</div><strong>অন্যান্য খেলা</strong><small>OTHER SPORTS</small></a>
-  </section>
-
-  <div class="sectionhead" id="latest"><h2>সর্বশেষ সংবাদ</h2><span>LATEST NEWS</span></div>
-
-  <div class="tools">
-    <input class="search" id="searchInput" type="search" placeholder="সংবাদের শিরোনাম খুঁজুন..." aria-label="সংবাদ খুঁজুন">
-    <div class="filters" id="filters">
-      <button class="filter active" type="button" data-filter="all">সব সংবাদ</button>
-      <button class="filter" type="button" data-filter="ফুটবল">ফুটবল</button>
-      <button class="filter" type="button" data-filter="ক্রিকেট">ক্রিকেট</button>
-      <button class="filter" type="button" data-filter="নারী ক্রীড়া">নারী ক্রীড়া</button>
-      <button class="filter" type="button" data-filter="তৃণমূল ক্রীড়া">তৃণমূল ক্রীড়া</button>
-    </div>
+<section class="hero" aria-label="প্রধান সংবাদ">
+  <div class="heroimg" id="heroImage"><div class="placeholder">⚽<small>KRIRADIGANTA SPORTS</small></div></div>
+  <div class="heroText">
+    <div class="kicker" id="heroKicker">প্রধান সংবাদ • TOP STORY</div>
+    <h1 id="heroTitle">বাংলাদেশের ক্রীড়াঙ্গনের প্রতিটি গল্প পৌঁছে যাক সবার কাছে</h1>
+    <p id="heroSummary">জেলা ও তৃণমূল পর্যায়ের প্রতিভা, জাতীয় দলের সাফল্য, নারী ক্রীড়া এবং সব খেলার সংবাদ নিয়ে ক্রীড়াদিগন্তের পথচলা।</p>
+    <a class="readmore" id="heroLink" href="#latest">সর্বশেষ সংবাদ দেখুন →</a>
   </div>
+</section>
 
-  <section class="newsgrid" id="newsGrid" aria-live="polite">
-    <div class="state">সর্বশেষ সংবাদ লোড হচ্ছে...</div>
-  </section>
+<div class="sectionhead"><h2>খেলার বিভাগ</h2><span>SPORTS CATEGORIES</span></div>
+<section class="categories">
+<a class="cat" id="football" href="#latest" data-category="ফুটবল"><div class="symbol">⚽</div><strong>ফুটবল</strong><small>FOOTBALL</small></a>
+<a class="cat" id="cricket" href="#latest" data-category="ক্রিকেট"><div class="symbol">🏏</div><strong>ক্রিকেট</strong><small>CRICKET</small></a>
+<a class="cat" id="women" href="#latest" data-category="নারী ক্রীড়া"><div class="symbol">🏆</div><strong>নারী ক্রীড়া</strong><small>WOMEN IN SPORTS</small></a>
+<a class="cat" id="local" href="#latest" data-category="তৃণমূল ক্রীড়া"><div class="symbol">🌟</div><strong>তৃণমূল ক্রীড়া</strong><small>GRASSROOTS</small></a>
+<a class="cat" id="other" href="#latest" data-category="অন্যান্য খেলা"><div class="symbol">🏅</div><strong>অন্যান্য খেলা</strong><small>OTHER SPORTS</small></a>
+</section>
 
-  <section class="about" id="about">
-    <div class="sectionhead"><h2>ক্রীড়াদিগন্ত সম্পর্কে</h2><span>ABOUT US</span></div>
-    <div class="aboutbox">
-      <p><strong>ক্রীড়াদিগন্ত | KRIRADIGANTA</strong> বাংলাদেশের তৃণমূল থেকে জাতীয় পর্যায় পর্যন্ত খেলাধুলার সংবাদ, খেলোয়াড়দের সাফল্য এবং ক্রীড়াঙ্গনের গুরুত্বপূর্ণ ঘটনাগুলো পাঠকের কাছে তুলে ধরার একটি ক্রীড়া সংবাদমাধ্যম।</p>
-      <p><strong>আমাদের স্লোগান:</strong> তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন | From Grassroots to National Sports</p>
-    </div>
-  </section>
+<div class="sectionhead" id="latest"><h2>সর্বশেষ সংবাদ</h2><span>LATEST NEWS</span></div>
+
+<div class="tools">
+<input class="search" id="searchInput" type="search" placeholder="সংবাদের শিরোনাম খুঁজুন..." aria-label="সংবাদ খুঁজুন">
+<div class="filters" id="filters">
+<button class="filter active" type="button" data-filter="all">সব সংবাদ</button>
+<button class="filter" type="button" data-filter="ফুটবল">ফুটবল</button>
+<button class="filter" type="button" data-filter="ক্রিকেট">ক্রিকেট</button>
+<button class="filter" type="button" data-filter="নারী ক্রীড়া">নারী ক্রীড়া</button>
+<button class="filter" type="button" data-filter="তৃণমূল ক্রীড়া">তৃণমূল ক্রীড়া</button>
+<button class="filter" type="button" data-filter="অন্যান্য খেলা">অন্যান্য খেলা</button>
+</div>
+</div>
+
+<section class="newsgrid" id="newsGrid" aria-live="polite"><div class="state">সর্বশেষ সংবাদ লোড হচ্ছে...</div></section>
+
+<section class="about" id="about">
+<div class="sectionhead"><h2>ক্রীড়াদিগন্ত সম্পর্কে</h2><span>ABOUT US</span></div>
+<div class="aboutbox">
+<p><strong>ক্রীড়াদিগন্ত | KRIRADIGANTA</strong> বাংলাদেশের তৃণমূল থেকে জাতীয় পর্যায় পর্যন্ত খেলাধুলার সংবাদ, খেলোয়াড়দের সাফল্য এবং ক্রীড়াঙ্গনের গুরুত্বপূর্ণ ঘটনাগুলো পাঠকের কাছে তুলে ধরার একটি ক্রীড়া সংবাদমাধ্যম।</p>
+<p><strong>আমাদের স্লোগান:</strong> তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন | From Grassroots to National Sports</p>
+</div>
+</section>
 </main>
 
-<footer>
-  <div class="wrap footrow">
-    <div><strong>ক্রীড়াদিগন্ত | KRIRADIGANTA</strong><p>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</p></div>
-    <div><div class="footlinks"><a href="/">প্রচ্ছদ</a><a href="#latest">সর্বশেষ সংবাদ</a><a href="#about">আমাদের সম্পর্কে</a></div><p>© <span id="year"></span> KRIRADIGANTA. All rights reserved.</p></div>
-  </div>
-</footer>
+<footer><div class="wrap footrow">
+<div><strong>ক্রীড়াদিগন্ত | KRIRADIGANTA</strong><p>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</p></div>
+<div><div class="footlinks"><a href="/">প্রচ্ছদ</a><a href="#latest">সর্বশেষ সংবাদ</a><a href="#about">আমাদের সম্পর্কে</a></div><p>© <span id="year"></span> KRIRADIGANTA. All rights reserved.</p></div>
+</div></footer>
 
 <script type="module">
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -227,8 +207,6 @@ function cleanText(value) {
 function matchesCategory(article, filter) {
   if (filter === "all") return true;
   const category = cleanText(article.category).toLowerCase();
-  const f = filter.toLowerCase();
-
   const terms = {
     "ফুটবল": ["ফুটবল", "football"],
     "ক্রিকেট": ["ক্রিকেট", "cricket"],
@@ -236,12 +214,17 @@ function matchesCategory(article, filter) {
     "তৃণমূল ক্রীড়া": ["তৃণমূল", "grassroots"],
     "অন্যান্য খেলা": ["অন্যান্য", "অ্যাথলেটিকস", "ভলিবল", "হ্যান্ডবল", "other"]
   };
-
-  return (terms[filter] || [f]).some(term => category.includes(term.toLowerCase()));
+  return (terms[filter] || [filter]).some(term =>
+    category.includes(term.toLowerCase())
+  );
 }
 
 function renderHero(article) {
   if (!article) return;
+
+  $("heroKicker").textContent = article.featured
+    ? "★ নির্বাচিত প্রধান সংবাদ • FEATURED STORY"
+    : "সর্বশেষ সংবাদ • LATEST STORY";
 
   $("heroTitle").textContent = article.title || "ক্রীড়াদিগন্তের সর্বশেষ সংবাদ";
   $("heroSummary").textContent =
@@ -261,27 +244,34 @@ function renderHero(article) {
     img.loading = "eager";
     img.onerror = () => {
       img.remove();
-      box.insertAdjacentHTML("afterbegin",
-        '<div class="placeholder">⚽<small>KRIRADIGANTA SPORTS</small></div>');
+      if (!box.querySelector(".placeholder")) {
+        const placeholder = document.createElement("div");
+        placeholder.className = "placeholder";
+        placeholder.innerHTML = "⚽<small>KRIRADIGANTA SPORTS</small>";
+        box.prepend(placeholder);
+      }
     };
     box.appendChild(img);
-    const label = document.createElement("span");
-    label.className = "media-label";
-    label.textContent = article.video_url ? "▶ ছবি ও ভিডিও সংবাদ" : "প্রধান সংবাদ";
-    box.appendChild(label);
   } else {
     const placeholder = document.createElement("div");
     placeholder.className = "placeholder";
     placeholder.innerHTML = "⚽<small>KRIRADIGANTA SPORTS</small>";
     box.appendChild(placeholder);
   }
+
+  const label = document.createElement("span");
+  label.className = "media-label";
+  label.textContent = article.video_url
+    ? "▶ ছবি ও ভিডিও সংবাদ"
+    : article.featured ? "★ প্রধান সংবাদ" : "সর্বশেষ সংবাদ";
+  box.appendChild(label);
 }
 
 function makeCard(article) {
   const card = document.createElement("article");
   card.className = "news-card";
-
   const link = `/news.html?id=${encodeURIComponent(article.id)}`;
+
   const media = document.createElement("a");
   media.className = "card-img";
   media.href = link;
@@ -294,10 +284,12 @@ function makeCard(article) {
     img.loading = "lazy";
     img.onerror = () => {
       img.remove();
-      const icon = document.createElement("span");
-      icon.className = "no-img";
-      icon.textContent = "🏅";
-      media.appendChild(icon);
+      if (!media.querySelector(".no-img")) {
+        const icon = document.createElement("span");
+        icon.className = "no-img";
+        icon.textContent = "🏅";
+        media.appendChild(icon);
+      }
     };
     media.appendChild(img);
   } else {
@@ -305,6 +297,13 @@ function makeCard(article) {
     icon.className = "no-img";
     icon.textContent = "🏅";
     media.appendChild(icon);
+  }
+
+  if (article.featured) {
+    const featured = document.createElement("span");
+    featured.className = "featured-tag";
+    featured.textContent = "★ প্রধান সংবাদ";
+    media.appendChild(featured);
   }
 
   if (article.video_url) {
@@ -354,9 +353,9 @@ function renderNews() {
 
   const filtered = allNews.filter(article => {
     const text = [
-      article.title, article.summary, article.content, article.category
+      article.title, article.summary, article.content,
+      article.category, article.author
     ].join(" ").toLowerCase();
-
     return matchesCategory(article, activeFilter) && text.includes(term);
   });
 
@@ -380,21 +379,24 @@ async function loadNews() {
 
   const { data, error } = await supabase
     .from("news")
-    .select("id,title,slug,category,summary,content,image_url,video_url,author,created_at")
+    .select("id,title,slug,category,summary,content,image_url,video_url,author,created_at,featured")
     .eq("published", true)
     .order("created_at", { ascending: false })
-    .limit(30);
+    .limit(100);
 
   if (error) {
     console.error("Supabase news load error:", error);
-    grid.innerHTML = '<div class="state">সংবাদ লোড করা যায়নি। ইন্টারনেট সংযোগ দিয়ে আবার চেষ্টা করুন।</div>';
+    grid.innerHTML =
+      '<div class="state">সংবাদ লোড করা যায়নি। ইন্টারনেট সংযোগ দিয়ে আবার চেষ্টা করুন।</div>';
     return;
   }
 
   allNews = data || [];
 
   if (allNews.length) {
-    renderHero(allNews[0]);
+    // নির্বাচিত প্রধান সংবাদ থাকলে সেটি, না থাকলে সর্বশেষ সংবাদ।
+    const featuredNews = allNews.find(article => article.featured === true);
+    renderHero(featuredNews || allNews[0]);
   }
 
   renderNews();
@@ -403,8 +405,8 @@ async function loadNews() {
 document.querySelectorAll(".filter").forEach(button => {
   button.addEventListener("click", () => {
     activeFilter = button.dataset.filter;
-    document.querySelectorAll(".filter").forEach(b => {
-      b.classList.toggle("active", b === button);
+    document.querySelectorAll(".filter").forEach(item => {
+      item.classList.toggle("active", item === button);
     });
     renderNews();
   });
@@ -423,7 +425,7 @@ document.querySelectorAll(".cat[data-category]").forEach(link => {
 $("searchInput").addEventListener("input", renderNews);
 
 loadNews().catch(error => {
-  console.error(error);
+  console.error("Homepage error:", error);
   $("newsGrid").innerHTML =
     '<div class="state">সংবাদ লোড করা যায়নি। পরে আবার চেষ্টা করুন।</div>';
 });
