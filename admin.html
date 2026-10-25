@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ক্রীড়াদিগন্ত | Admin Panel</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:700px;margin:20px auto;padding:16px;background:#f1f5f9;color:#172033}
+.card{background:white;padding:18px;margin:14px 0;border-radius:12px}
+input,textarea,select,button{box-sizing:border-box;width:100%;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:7px;font-size:16px}
+button{background:#075e35;color:white;border:0;font-weight:bold}
+h1{color:#075e35} .hidden{display:none}
+</style>
+</head>
+<body>
+<h1>ক্রীড়াদিগন্ত</h1>
+<p>সংবাদ ব্যবস্থাপনা প্যানেল</p>
+
+<div class="card" id="loginBox">
+<h2>অ্যাডমিন লগইন</h2>
+<input id="email" type="email" placeholder="আপনার ইমেইল" autocomplete="username">
+<input id="password" type="password" placeholder="আপনার পাসওয়ার্ড" autocomplete="current-password">
+<button id="loginBtn">লগইন</button>
+</div>
+
+<div class="hidden" id="adminBox">
+<div class="card">
+<h2>নতুন সংবাদ লিখুন</h2>
+<form id="newsForm">
+<input id="title" placeholder="সংবাদের শিরোনাম" required>
+<select id="category" required>
+<option value="">বিভাগ নির্বাচন করুন</option>
+<option>ফুটবল</option><option>ক্রিকেট</option>
+<option>নারী ক্রীড়া</option><option>অন্যান্য খেলা</option>
+<option>তৃণমূল ক্রীড়া</option>
+</select>
+<textarea id="summary" placeholder="সংবাদের সংক্ষিপ্ত বিবরণ" rows="3"></textarea>
+<textarea id="content" placeholder="সংবাদের সম্পূর্ণ লেখা" rows="8" required></textarea>
+<input id="image" type="url" placeholder="ছবির লিংক (ঐচ্ছিক)">
+<input id="author" placeholder="সংবাদদাতার নাম">
+<label><input id="published" type="checkbox" style="width:auto"> সরাসরি প্রকাশ করুন</label>
+<button type="submit">সংবাদ সংরক্ষণ করুন</button>
+</form>
+<p id="message"></p>
+</div>
+<div class="card">
+<h2>সংরক্ষিত সংবাদ</h2>
+<button id="refreshBtn">সংবাদ তালিকা দেখুন</button>
+<div id="newsList"></div>
+<button id="logoutBtn">লগআউট</button>
+</div>
+</div>
+
+<script type="module">
+import { createClient } from
+'https://esm.sh/@supabase/supabase-js@2';
+
+const SUPABASE_URL =
+'https://tbktqpbvrqyoqjvdkesm.supabase.co';
+const SUPABASE_KEY =
+'sb_publishable_NAfSTNt2-L5m0yanG3UeBQ_Uh-9Bojv';
+
+const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = id => document.getElementById(id);
+
+function showMessage(text) {
+  $('message').textContent = text;
+}
+
+async function checkLogin() {
+  const { data } = await db.auth.getSession();
+  const user = data.session?.user;
+
+  if (user?.app_metadata?.role === 'admin') {
+    $('loginBox').classList.add('hidden');
+    $('adminBox').classList.remove('hidden');
+    loadNews();
+  }
+}
+
+$('loginBtn').onclick = async () => {
+  const { data, error } = await db.auth.signInWithPassword({
+    email: $('email').value.trim(),
+    password: $('password').value
+  });
+
+  if (error) {
+    alert('লগইন হয়নি: ' + error.message);
+    return;
+  }
+
+  if (data.user?.app_metadata?.role !== 'admin') {
+    await db.auth.signOut();
+    alert('এই অ্যাকাউন্টে অ্যাডমিন অনুমতি নেই।');
+    return;
+  }
+
+  await checkLogin();
+};
+
+$('newsForm').onsubmit = async event => {
+  event.preventDefault();
+  showMessage('সংরক্ষণ হচ্ছে...');
+
+  const title = $('title').value.trim();
+  const slug = title.toLowerCase()
+    .normalize('NFKD')
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-|-$/g, '') + '-' + Date.now();
+
+  const { error } = await db.from('news').insert({
+    title,
+    slug,
+    category: $('category').value,
+    summary: $('summary').value.trim(),
+    content: $('content').value.trim(),
+    image_url: $('image').value.trim() || null,
+    author: $('author').value.trim() || null,
+    published: $('published').checked
+  });
+
+  if (error) {
+    showMessage('সমস্যা: ' + error.message);
+    return;
+  }
+
+  showMessage('সংবাদ সফলভাবে সংরক্ষিত হয়েছে।');
+  $('newsForm').reset();
+  loadNews();
+};
+
+async function loadNews() {
+  const { data, error } = await db.from('news')
+    .select('id,title,category,published,created_at')
+    .order('created_at', { ascending: false })
+    .limit(50);
+
+  if (error) {
+    $('newsList').textContent = 'তালিকা লোড হয়নি: ' + error.message;
+    return;
+  }
+
+  $('newsList').replaceChildren();
+
+  data.forEach(item => {
+    const article = document.createElement('div');
+    article.style.cssText = 'padding:12px 0;border-bottom:1px solid #ddd';
+
+    const heading = document.createElement('strong');
+    heading.textContent = item.title;
+
+    const detail = document.createElement('p');
+    detail.textContent = item.category + ' — ' +
+      (item.published ? 'প্রকাশিত' : 'খসড়া');
+
+    article.append(heading, detail);
+    $('newsList').append(article);
+  });
+}
+
+$('refreshBtn').onclick = loadNews;
+$('logoutBtn').onclick = async () => {
+  await db.auth.signOut();
+  location.reload();
+};
+
+checkLogin();
+</script>
+</body>
+</html>
+  
