@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -41,31 +40,35 @@ h1{font-size:30px;line-height:1.55;margin:10px 0}
 .sectionhead h2{margin:0;font-size:22px;border-left:5px solid var(--red);padding-left:10px}
 .sectionhead span{font-size:12px;color:var(--muted)}
 .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.card{background:white;border-radius:10px;padding:19px;box-shadow:0 3px 12px #13263a0b}
+.card{background:white;border-radius:10px;padding:19px;box-shadow:0 3px 12px #13263a0b;min-width:0}
 .card .symbol{font-size:30px;margin-bottom:12px}
 .card h3{font-size:18px;line-height:1.6;margin:7px 0}
-.card p{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:0}
+.card p{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:0;overflow-wrap:anywhere}
 .category{font-size:12px;font-weight:bold;color:var(--red)}
 .notice{background:#fff8e6;border:1px solid #f1dfad;color:#69531c;border-radius:8px;padding:13px 15px;font-size:13px;line-height:1.8;margin-top:18px}
 .about{margin-top:30px}
 footer{background:var(--navy);color:white;padding:28px 0}
 footer p{font-size:13px;color:#c9d7e5;line-height:1.8}
 .footrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.news-image{display:block;width:100%;height:190px;object-fit:cover;border-radius:7px;margin-bottom:13px}
+.news-date{display:block;margin-top:12px;color:var(--muted);font-size:12px}
+#news-status{font-size:14px;color:var(--muted);line-height:1.8}
 @media(max-width:700px){
- .brand{font-size:25px}.logo{width:48px;height:48px}
- .hero{grid-template-columns:1fr}
- .heroimg{min-height:190px}
- .ball{font-size:60px}
- .heroText{padding:21px}
- h1{font-size:23px}
- .grid{grid-template-columns:1fr}
- .sectionhead h2{font-size:19px}
- .topline .wrap{font-size:11px}
+.brand{font-size:25px}.logo{width:48px;height:48px}
+.hero{grid-template-columns:1fr}
+.heroimg{min-height:190px}
+.ball{font-size:60px}
+.heroText{padding:21px}
+h1{font-size:23px}
+.grid{grid-template-columns:1fr}
+.sectionhead h2{font-size:19px}
+.topline .wrap{font-size:11px}
 }
 </style>
 </head>
 <body>
 <div class="topline"><div class="wrap"><span>বাংলাদেশের ক্রীড়াঙ্গনের সংবাদ</span><span>KRIRADIGANTA • SPORTS NEWS</span></div></div>
+
 <header>
 <div class="wrap brandrow">
 <div class="logo">ক্রী</div>
@@ -76,6 +79,7 @@ footer p{font-size:13px;color:#c9d7e5;line-height:1.8}
 </div>
 </div>
 </header>
+
 <nav><div class="wrap navinner">
 <a href="#">প্রচ্ছদ</a>
 <a href="#football">ফুটবল</a>
@@ -85,7 +89,9 @@ footer p{font-size:13px;color:#c9d7e5;line-height:1.8}
 <a href="#other">অন্যান্য খেলা</a>
 <a href="#about">আমাদের সম্পর্কে</a>
 </div></nav>
+
 <div class="breaking"><div class="wrap"><strong>ক্রীড়া বার্তা</strong><span>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন—খেলাধুলার প্রতিটি গল্পে ক্রীড়াদিগন্ত</span></div></div>
+
 <main class="wrap">
 <section class="hero">
 <div class="heroimg">
@@ -109,18 +115,99 @@ footer p{font-size:13px;color:#c9d7e5;line-height:1.8}
 </section>
 
 <div class="sectionhead" id="latest"><h2>সর্বশেষ সংবাদ</h2><span>LATEST NEWS</span></div>
-<section class="grid">
-<article class="card"><div class="category">তৃণমূল ক্রীড়া</div><h3>স্থানীয় ক্রীড়া প্রতিভার খবর এখানে প্রকাশ করুন</h3><p>এই অংশটি নমুনা। বাস্তব সংবাদ, তারিখ, ছবি ও প্রতিবেদকের তথ্য দিয়ে প্রতিস্থাপন করতে হবে।</p></article>
-<article class="card"><div class="category">নারী ক্রীড়া</div><h3>নারী খেলোয়াড়দের অর্জন ও অনুপ্রেরণার গল্প</h3><p>এটি নমুনা বিষয়বস্তু, কোনো বর্তমান সংবাদ নয়। প্রকাশের আগে তথ্য ও অনুমতি নিশ্চিত করুন।</p></article>
-<article class="card"><div class="category">জাতীয় ক্রীড়াঙ্গন</div><h3>জাতীয় পর্যায়ের গুরুত্বপূর্ণ ক্রীড়া আপডেট</h3><p>এটি ডেমো কার্ড। প্রকৃত প্রতিবেদন ছাড়া এটিকে প্রকাশিত সংবাদ হিসেবে ব্যবহার করবেন না।</p></article>
-</section>
-<div class="notice"><strong>সম্পাদকের নোট:</strong> সর্বশেষ সংবাদ অংশে এখন নমুনা লেখা আছে। এটি স্বয়ংক্রিয় সংবাদ ব্যবস্থা নয়; আপাতত HTML সম্পাদনা করে লেখা পরিবর্তন করতে হবে।</div>
+<p id="news-status">প্রকাশিত সংবাদ লোড হচ্ছে...</p>
+<section class="grid" id="news-list" aria-live="polite"></section>
 
 <section class="about" id="about">
 <div class="sectionhead"><h2>ক্রীড়াদিগন্ত সম্পর্কে</h2><span>ABOUT US</span></div>
-<div class="card"><p>ক্রীড়াদিগন্ত একটি পরিকল্পিত বাংলা-ইংরেজি ক্রীড়া সংবাদমাধ্যম। আমাদের লক্ষ্য বাংলাদেশের তৃণমূল থেকে জাতীয় পর্যায় পর্যন্ত সব খেলার সংবাদ, খেলোয়াড়দের সাফল্য এবং ক্রীড়াঙ্গনের গুরুত্বপূর্ণ ঘটনাগুলো পাঠকের কাছে তুলে ধরা।</p><p><strong>স্লোগান:</strong> তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন | From Grassroots to National Sports</p><p><strong>যোগাযোগ:</strong> অফিসিয়াল ইমেইল ঠিকানা নির্ধারণের পর এখানে যুক্ত করুন।</p></div>
+<div class="card">
+<p>ক্রীড়াদিগন্ত একটি পরিকল্পিত বাংলা-ইংরেজি ক্রীড়া সংবাদমাধ্যম। আমাদের লক্ষ্য বাংলাদেশের তৃণমূল থেকে জাতীয় পর্যায় পর্যন্ত সব খেলার সংবাদ, খেলোয়াড়দের সাফল্য এবং ক্রীড়াঙ্গনের গুরুত্বপূর্ণ ঘটনাগুলো পাঠকের কাছে তুলে ধরা।</p>
+<p><strong>স্লোগান:</strong> তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন | From Grassroots to National Sports</p>
+<p><strong>যোগাযোগ:</strong> অফিসিয়াল ইমেইল ঠিকানা নির্ধারণের পর এখানে যুক্ত করুন।</p>
+</div>
 </section>
 </main>
+
 <footer><div class="wrap footrow"><div><strong>ক্রীড়াদিগন্ত | KRIRADIGANTA</strong><p>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</p></div><div><p>বাংলাদেশের সব খেলার সংবাদ ও ক্রীড়া আপডেট</p><p>© 2026 KRIRADIGANTA. All rights reserved.</p></div></div></footer>
+
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+const supabase = createClient(
+  'https://tbktqpbvrqyoqjvdkesm.supabase.co',
+  'sb_publishable_NAfSTNt2-L5m0yanG3UeBQ_Uh-9Bojv'
+);
+
+const list = document.getElementById('news-list');
+const status = document.getElementById('news-status');
+
+async function loadNews() {
+  const { data, error } = await supabase
+    .from('news')
+    .select('id,title,category,summary,content,image_url,author,created_at')
+    .eq('published', true)
+    .order('created_at', { ascending: false })
+    .limit(12);
+
+  list.replaceChildren();
+
+  if (error) {
+    status.textContent = 'সংবাদ এখন লোড করা যাচ্ছে না। পরে আবার চেষ্টা করুন।';
+    console.error('Supabase news error:', error.message);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    status.textContent = 'এখনো কোনো সংবাদ প্রকাশ করা হয়নি। শিগগিরই নতুন সংবাদ আসবে।';
+    return;
+  }
+
+  status.textContent = 'সর্বশেষ প্রকাশিত সংবাদ';
+
+  for (const item of data) {
+    const card = document.createElement('article');
+    card.className = 'card';
+
+    if (item.image_url) {
+      const image = document.createElement('img');
+      image.className = 'news-image';
+      image.src = item.image_url;
+      image.alt = item.title;
+      image.loading = 'lazy';
+      card.appendChild(image);
+    }
+
+    const category = document.createElement('div');
+    category.className = 'category';
+    category.textContent = item.category || 'ক্রীড়া সংবাদ';
+    card.appendChild(category);
+
+    const title = document.createElement('h3');
+    title.textContent = item.title;
+    card.appendChild(title);
+
+    const summary = document.createElement('p');
+    summary.textContent = item.summary ||
+      (item.content || '').slice(0, 200);
+    card.appendChild(summary);
+
+    const date = document.createElement('small');
+    date.className = 'news-date';
+    date.textContent = new Date(item.created_at).toLocaleDateString('bn-BD');
+    card.appendChild(date);
+
+    if (item.author) {
+      const author = document.createElement('small');
+      author.className = 'news-date';
+      author.textContent = 'প্রতিবেদক: ' + item.author;
+      card.appendChild(author);
+    }
+
+    list.appendChild(card);
+  }
+}
+
+loadNews();
+</script>
 </body>
 </html>
