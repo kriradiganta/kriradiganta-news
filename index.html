@@ -3,85 +3,124 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ক্রীড়াদিগন্ত | KRIRADIGANTA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ক্রীড়াদিগন্ত | KRIRADIGANTA — Sports News</title>
+<meta name="description" content="বাংলাদেশের তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গনের খবর, ফুটবল, ক্রিকেট, নারী ক্রীড়া ও সব খেলার আপডেট।">
+<meta name="theme-color" content="#071d33">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f3f5f7;color:#17202a}
-header{background:#092b45;color:white;padding:22px 16px}
-.wrap{max-width:1100px;margin:auto}
-.brand{font-size:30px;font-weight:bold;color:#fff}
-.tag{margin-top:7px;color:#cbdce8;font-size:14px}
-nav{background:#0d3b5c;padding:13px 16px}
-nav a{color:white;text-decoration:none;margin-right:18px;white-space:nowrap;font-size:14px}
-.ticker{background:#d71920;color:white;padding:12px 16px;font-weight:bold}
-main{max-width:1100px;margin:22px auto;padding:0 14px}
-.section-title{border-left:5px solid #d71920;padding-left:10px;margin:24px 0 15px}
-.hero{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 10px #00000010}
-.hero img{width:100%;height:260px;object-fit:cover;background:#dce5ec}
-.hero-text{padding:20px}
-.label{color:#d71920;font-weight:bold;font-size:13px}
-h1{font-size:25px;line-height:1.5;margin:10px 0}
-p{line-height:1.8}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.card{background:white;border-radius:9px;padding:16px;box-shadow:0 2px 8px #0000000c}
-.card h3{font-size:18px;line-height:1.6;margin:9px 0}
-.card p{font-size:14px;color:#59636e}
-footer{margin-top:35px;background:#092b45;color:white;padding:28px 16px;text-align:center}
-@media(max-width:650px){.brand{font-size:25px}.cards{grid-template-columns:1fr}.hero img{height:190px}h1{font-size:22px}nav{overflow:auto;white-space:nowrap}}
+:root{--navy:#071d33;--blue:#103b60;--red:#e32636;--paper:#f2f4f7;--muted:#657386}
+body{margin:0;background:var(--paper);color:#172333;font-family:Arial,"Noto Sans Bengali",sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,94%);margin:auto}
+.topline{background:#041321;color:#d7e1eb;font-size:12px;padding:8px 0}
+.topline .wrap{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+header{background:var(--navy);color:white;padding:22px 0}
+.brandrow{display:flex;align-items:center;gap:14px}
+.logo{width:55px;height:55px;border-radius:12px;background:var(--red);display:grid;place-items:center;font-size:28px;font-weight:900}
+.brand{font-size:30px;font-weight:900;line-height:1.3}
+.english{font-size:13px;letter-spacing:3px;color:#c9d7e5;font-weight:bold}
+.tag{font-size:13px;color:#c9d7e5;margin-top:7px}
+nav{background:var(--blue);color:white}
+.navinner{display:flex;gap:24px;align-items:center;overflow-x:auto;white-space:nowrap;padding:14px 0}
+nav a{font-size:14px;font-weight:bold}
+nav a:hover{color:#ffb5bb}
+.breaking{background:var(--red);color:white}
+.breaking .wrap{display:flex;align-items:center;gap:12px;padding:12px 0;font-size:14px}
+.breaking strong{background:white;color:var(--red);padding:5px 8px;border-radius:3px;white-space:nowrap}
+main{padding:24px 0 40px}
+.hero{display:grid;grid-template-columns:1.45fr 1fr;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 18px #13263a12}
+.heroimg{min-height:320px;background:linear-gradient(135deg,#143e60,#071d33);display:flex;align-items:center;justify-content:center;color:white;text-align:center;padding:25px}
+.ball{font-size:78px;line-height:1.2}
+.heroimg small{display:block;color:#d9e7f3;margin-top:10px}
+.heroText{padding:28px;align-self:center}
+.kicker{font-size:12px;color:var(--red);font-weight:900;letter-spacing:.7px}
+h1{font-size:30px;line-height:1.55;margin:10px 0}
+.heroText p{font-size:15px;color:var(--muted);line-height:1.9}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:30px 0 15px;border-bottom:2px solid #dce2e8;padding-bottom:10px}
+.sectionhead h2{margin:0;font-size:22px;border-left:5px solid var(--red);padding-left:10px}
+.sectionhead span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{background:white;border-radius:10px;padding:19px;box-shadow:0 3px 12px #13263a0b}
+.card .symbol{font-size:30px;margin-bottom:12px}
+.card h3{font-size:18px;line-height:1.6;margin:7px 0}
+.card p{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:0}
+.category{font-size:12px;font-weight:bold;color:var(--red)}
+.notice{background:#fff8e6;border:1px solid #f1dfad;color:#69531c;border-radius:8px;padding:13px 15px;font-size:13px;line-height:1.8;margin-top:18px}
+.about{margin-top:30px}
+footer{background:var(--navy);color:white;padding:28px 0}
+footer p{font-size:13px;color:#c9d7e5;line-height:1.8}
+.footrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:700px){
+ .brand{font-size:25px}.logo{width:48px;height:48px}
+ .hero{grid-template-columns:1fr}
+ .heroimg{min-height:190px}
+ .ball{font-size:60px}
+ .heroText{padding:21px}
+ h1{font-size:23px}
+ .grid{grid-template-columns:1fr}
+ .sectionhead h2{font-size:19px}
+ .topline .wrap{font-size:11px}
+}
 </style>
 </head>
 <body>
+<div class="topline"><div class="wrap"><span>বাংলাদেশের ক্রীড়াঙ্গনের সংবাদ</span><span>KRIRADIGANTA • SPORTS NEWS</span></div></div>
 <header>
-<div class="wrap">
+<div class="wrap brandrow">
+<div class="logo">ক্রী</div>
+<div>
 <div class="brand">ক্রীড়াদিগন্ত</div>
-<div style="font-size:17px;margin-top:4px">KRIRADIGANTA</div>
-<div class="tag">তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন | From Grassroots to National Sports</div>
+<div class="english">KRIRADIGANTA</div>
+<div class="tag">তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</div>
+</div>
 </div>
 </header>
-<nav>
-<div class="wrap">
+<nav><div class="wrap navinner">
 <a href="#">প্রচ্ছদ</a>
 <a href="#football">ফুটবল</a>
 <a href="#cricket">ক্রিকেট</a>
+<a href="#women">নারী ক্রীড়া</a>
+<a href="#local">তৃণমূল ক্রীড়া</a>
 <a href="#other">অন্যান্য খেলা</a>
 <a href="#about">আমাদের সম্পর্কে</a>
+</div></nav>
+<div class="breaking"><div class="wrap"><strong>ক্রীড়া বার্তা</strong><span>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন—খেলাধুলার প্রতিটি গল্পে ক্রীড়াদিগন্ত</span></div></div>
+<main class="wrap">
+<section class="hero">
+<div class="heroimg">
+<div><div class="ball">⚽</div><strong>KRIRADIGANTA SPORTS</strong><small>Grassroots to National Sports</small></div>
 </div>
-</nav>
-<div class="ticker">ক্রীড়াদিগন্ত | বাংলাদেশের ক্রীড়াঙ্গনের খবরের জন্য আমাদের সঙ্গে থাকুন</div>
-<main>
-<div class="hero">
-<img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1200&q=80" alt="ফুটবল মাঠ">
-<div class="hero-text">
-<div class="label">আমাদের পরিচয়</div>
-<h1>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন—খেলাধুলার প্রতিটি গল্পে ক্রীড়াদিগন্ত</h1>
-<p>বাংলাদেশের ক্রীড়াঙ্গনের খবর, প্রতিভাবান খেলোয়াড়দের গল্প, টুর্নামেন্টের আপডেট ও বিভিন্ন খেলার সংবাদ নিয়ে আমাদের যাত্রা।</p>
-</div>
-</div>
-<h2 class="section-title">খেলার বিভাগ</h2>
-<div class="cards">
-<div class="card" id="football"><div class="label">FOOTBALL</div><h3>ফুটবল</h3><p>দেশের তৃণমূল, জেলা ও জাতীয় পর্যায়ের ফুটবলের খবর।</p></div>
-<div class="card" id="cricket"><div class="label">CRICKET</div><h3>ক্রিকেট</h3><p>বাংলাদেশ ক্রিকেট ও স্থানীয় ক্রিকেটের সংবাদ।</p></div>
-<div class="card" id="other"><div class="label">ALL SPORTS</div><h3>অন্যান্য খেলা</h3><p>নারী ক্রীড়া, অ্যাথলেটিকসসহ সব খেলার আপডেট।</p></div>
-</div>
-<h2 class="section-title">সর্বশেষ সংবাদ</h2>
-<div class="cards">
-<div class="card"><div class="label">তৃণমূল ক্রীড়া</div><h3>জেলা পর্যায়ের ক্রীড়া প্রতিভা তুলে ধরাই আমাদের লক্ষ্য</h3><p>এটি নমুনা লেখা। এখানে আপনার যাচাই করা সংবাদ প্রকাশ করবেন।</p></div>
-<div class="card"><div class="label">নারী ক্রীড়া</div><h3>নারী খেলোয়াড়দের সাফল্য ও গল্প</h3><p>এটি নমুনা বিভাগ। প্রকৃত সংবাদ দিয়ে পরে আপডেট করুন।</p></div>
-<div class="card"><div class="label">জাতীয় ক্রীড়াঙ্গন</div><h3>দেশের ক্রীড়াঙ্গনের গুরুত্বপূর্ণ আপডেট</h3><p>এটি নমুনা লেখা, বর্তমান কোনো সংবাদ নয়।</p></div>
-</div>
-<section id="about">
-<h2 class="section-title">ক্রীড়াদিগন্ত সম্পর্কে</h2>
-<div class="card">
-<p>ক্রীড়াদিগন্ত একটি পরিকল্পিত বাংলা-ইংরেজি ক্রীড়া সংবাদমাধ্যম। আমাদের লক্ষ্য তৃণমূল থেকে জাতীয় পর্যায় পর্যন্ত খেলাধুলার সংবাদ ও খেলোয়াড়দের গল্প পাঠকের কাছে পৌঁছে দেওয়া।</p>
-<p><b>যোগাযোগ:</b> আপনার অফিসিয়াল ইমেইল এখানে যুক্ত করুন।</p>
+<div class="heroText">
+<div class="kicker">আমাদের লক্ষ্য • OUR MISSION</div>
+<h1>বাংলাদেশের ক্রীড়াঙ্গনের প্রতিটি গল্প পৌঁছে যাক সবার কাছে</h1>
+<p>জেলা ও তৃণমূল পর্যায়ের প্রতিভা, জাতীয় দলের সাফল্য, নারী ক্রীড়া এবং সব খেলার সংবাদ নিয়ে ক্রীড়াদিগন্তের পথচলা।</p>
 </div>
 </section>
+
+<div class="sectionhead"><h2>খেলার বিভাগ</h2><span>SPORTS CATEGORIES</span></div>
+<section class="grid">
+<a class="card" id="football" href="#latest"><div class="symbol">⚽</div><div class="category">FOOTBALL</div><h3>ফুটবল</h3><p>জাতীয় দল, ঘরোয়া ফুটবল, জেলা লিগ ও তৃণমূল পর্যায়ের খবর।</p></a>
+<a class="card" id="cricket" href="#latest"><div class="symbol">🏏</div><div class="category">CRICKET</div><h3>ক্রিকেট</h3><p>বাংলাদেশ ক্রিকেট, ঘরোয়া প্রতিযোগিতা ও নতুন প্রতিভার খবর।</p></a>
+<a class="card" id="women" href="#latest"><div class="symbol">🏆</div><div class="category">WOMEN IN SPORTS</div><h3>নারী ক্রীড়া</h3><p>নারী খেলোয়াড়, দল, টুর্নামেন্ট ও অর্জনের গল্প।</p></a>
+<a class="card" id="local" href="#latest"><div class="symbol">🌟</div><div class="category">GRASSROOTS</div><h3>তৃণমূল ক্রীড়া</h3><p>উপজেলা, জেলা, একাডেমি ও স্থানীয় প্রতিযোগিতার সংবাদ।</p></a>
+<a class="card" id="other" href="#latest"><div class="symbol">🏅</div><div class="category">OTHER SPORTS</div><h3>অন্যান্য খেলা</h3><p>অ্যাথলেটিকস, ভলিবল, হ্যান্ডবলসহ বিভিন্ন খেলার আপডেট।</p></a>
+<a class="card" href="#about"><div class="symbol">🎙️</div><div class="category">MULTIMEDIA</div><h3>ভিডিও ও সাক্ষাৎকার</h3><p>ক্রীড়াবিদদের সাক্ষাৎকার, মাঠের গল্প ও বিশেষ প্রতিবেদন।</p></a>
+</section>
+
+<div class="sectionhead" id="latest"><h2>সর্বশেষ সংবাদ</h2><span>LATEST NEWS</span></div>
+<section class="grid">
+<article class="card"><div class="category">তৃণমূল ক্রীড়া</div><h3>স্থানীয় ক্রীড়া প্রতিভার খবর এখানে প্রকাশ করুন</h3><p>এই অংশটি নমুনা। বাস্তব সংবাদ, তারিখ, ছবি ও প্রতিবেদকের তথ্য দিয়ে প্রতিস্থাপন করতে হবে।</p></article>
+<article class="card"><div class="category">নারী ক্রীড়া</div><h3>নারী খেলোয়াড়দের অর্জন ও অনুপ্রেরণার গল্প</h3><p>এটি নমুনা বিষয়বস্তু, কোনো বর্তমান সংবাদ নয়। প্রকাশের আগে তথ্য ও অনুমতি নিশ্চিত করুন।</p></article>
+<article class="card"><div class="category">জাতীয় ক্রীড়াঙ্গন</div><h3>জাতীয় পর্যায়ের গুরুত্বপূর্ণ ক্রীড়া আপডেট</h3><p>এটি ডেমো কার্ড। প্রকৃত প্রতিবেদন ছাড়া এটিকে প্রকাশিত সংবাদ হিসেবে ব্যবহার করবেন না।</p></article>
+</section>
+<div class="notice"><strong>সম্পাদকের নোট:</strong> সর্বশেষ সংবাদ অংশে এখন নমুনা লেখা আছে। এটি স্বয়ংক্রিয় সংবাদ ব্যবস্থা নয়; আপাতত HTML সম্পাদনা করে লেখা পরিবর্তন করতে হবে।</div>
+
+<section class="about" id="about">
+<div class="sectionhead"><h2>ক্রীড়াদিগন্ত সম্পর্কে</h2><span>ABOUT US</span></div>
+<div class="card"><p>ক্রীড়াদিগন্ত একটি পরিকল্পিত বাংলা-ইংরেজি ক্রীড়া সংবাদমাধ্যম। আমাদের লক্ষ্য বাংলাদেশের তৃণমূল থেকে জাতীয় পর্যায় পর্যন্ত সব খেলার সংবাদ, খেলোয়াড়দের সাফল্য এবং ক্রীড়াঙ্গনের গুরুত্বপূর্ণ ঘটনাগুলো পাঠকের কাছে তুলে ধরা।</p><p><strong>স্লোগান:</strong> তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন | From Grassroots to National Sports</p><p><strong>যোগাযোগ:</strong> অফিসিয়াল ইমেইল ঠিকানা নির্ধারণের পর এখানে যুক্ত করুন।</p></div>
+</section>
 </main>
-<footer>
-<strong>ক্রীড়াদিগন্ত | KRIRADIGANTA</strong>
-<p>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</p>
-<p>© 2026 KRIRADIGANTA. All rights reserved.</p>
-</footer>
+<footer><div class="wrap footrow"><div><strong>ক্রীড়াদিগন্ত | KRIRADIGANTA</strong><p>তৃণমূল থেকে জাতীয় ক্রীড়াঙ্গন</p></div><div><p>বাংলাদেশের সব খেলার সংবাদ ও ক্রীড়া আপডেট</p><p>© 2026 KRIRADIGANTA. All rights reserved.</p></div></div></footer>
 </body>
 </html>
